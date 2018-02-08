@@ -1,0 +1,12 @@
+<resources>
+
+
+    <style name="backGroundScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_img</item>
+    </style>
+
+    <style name="AppBarOverlay" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <style name="PopupOverlay" parent="Theme.AppCompat.Light.NoActionBar"/>
+
+</resources>
