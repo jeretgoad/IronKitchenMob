@@ -56,11 +56,12 @@ public class home_tab extends Fragment {
               System.out.println("onClick method inside recyclerView");
             if(position > 1)
             {
-
+                System.out.println("inside if: position " + position);
                 viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                        System.out.println("onPageScrolled");
                     }
 
                     @Override
@@ -71,13 +72,13 @@ public class home_tab extends Fragment {
 
                     @Override
                     public void onPageScrollStateChanged(int state) {
-
+                        System.out.println("onPageScrollStateChanged");
                     }
                 });
             }
           }
           @Override
-            public void onLongClick(View view, int position) {
+          public void onLongItemClick(View view, int position) {
                 System.out.println("longClick");
           }
         }));
@@ -106,8 +107,8 @@ public class home_tab extends Fragment {
     public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
         public interface OnItemClickListener {
-            void onItemClick(View view, int position);
-            void onItemLongClick(View view, int position);
+            public void onItemClick(View view, int position);
+            public void onLongItemClick(View view, int position);
         }
 
         private OnItemClickListener mListener;
