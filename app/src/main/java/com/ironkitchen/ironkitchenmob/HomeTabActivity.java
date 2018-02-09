@@ -34,7 +34,7 @@ public class HomeTabActivity extends AppCompatActivity{
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    private ViewPager mViewPager;
+    public static ViewPager mViewPager;
     private Intent getIntent;
     private AdapterViewFlipper viewAdapter;
     private ArrayList<Integer> images;

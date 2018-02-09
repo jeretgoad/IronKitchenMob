@@ -4,6 +4,7 @@ package com.ironkitchen.ironkitchenmob;
 import android.os.Bundle;
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.R.*;
-import android.widget.AdapterView;
+
 
 import java.util.ArrayList;
 
@@ -37,9 +38,6 @@ public class home_tab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.i("onCreate", "created");
-        System.out.println("onCreate bitch");
-        viewPager = new ViewPager(getContext());
-        viewPager.setId(R.id.tabs);
         daView =  inflater.inflate(R.layout.fragment_home_tab, container, false);
         recyclerView = (RecyclerView) daView.findViewById(R.id.recView1);
         recyclerView.setHasFixedSize(true);
@@ -49,32 +47,15 @@ public class home_tab extends Fragment {
         mobAdapter = new MobAdapter(getActivity(), mobObjects);
         recyclerView.setAdapter(mobAdapter);
         recyclerView.setLayoutManager(mobGridLayout);
-        System.out.println(recyclerView.getAdapter().getItemCount());
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new RecyclerTouchListener.OnItemClickListener() {
           @Override
           public void onItemClick(View view, int position) {
               System.out.println("onClick method inside recyclerView");
             if(position > 1)
             {
-                System.out.println("inside if: position " + position);
-                viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-                    @Override
-                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                        System.out.println("onPageScrolled");
-                    }
-
-                    @Override
-                    public void onPageSelected(int position) {
-                        System.out.println("onPageSelected");
-                        Fragment fragment = ((HomeTabActivity.SectionsPagerAdapter)viewPager.getAdapter()).getFragment(position);
-                    }
-
-                    @Override
-                    public void onPageScrollStateChanged(int state) {
-                        System.out.println("onPageScrollStateChanged");
-                    }
-                });
+                System.out.println("inside if");
+                FragmentManager frag = getActivity().getSupportFragmentManager();
+                frag.beginTransaction().replace(R.id.content,((HomeTabActivity.SectionsPagerAdapter)viewPager.getAdapter()).getFragment(position) ).commit();
             }
           }
           @Override
