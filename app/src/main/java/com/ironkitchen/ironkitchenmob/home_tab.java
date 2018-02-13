@@ -61,7 +61,7 @@ public class home_tab extends Fragment {
             if(cyclePosition>1) {
                 HomeTabActivity.SectionsPagerAdapter SPA = (HomeTabActivity.SectionsPagerAdapter) viewPager.getAdapter();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction(R.id.content, new home_tab()).commit();
+                fm.beginTransaction(R.id.content, SPA.getFragment(cyclePosition)).commit();
             }
           }
           @Override
