@@ -1,6 +1,7 @@
 package com.ironkitchen.ironkitchenmob;
 
 
+
 import android.os.Bundle;
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -16,7 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.R.*;
-
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,7 @@ public class home_tab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.i("onCreate", "created");
+        System.out.println("onCreate bitch");
         daView =  inflater.inflate(R.layout.fragment_home_tab, container, false);
         recyclerView = (RecyclerView) daView.findViewById(R.id.recView1);
         recyclerView.setHasFixedSize(true);
@@ -47,15 +49,19 @@ public class home_tab extends Fragment {
         mobAdapter = new MobAdapter(getActivity(), mobObjects);
         recyclerView.setAdapter(mobAdapter);
         recyclerView.setLayoutManager(mobGridLayout);
+        System.out.println(recyclerView.getAdapter().getItemCount());
+        viewPager = HomeTabActivity.mViewPager;
+
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new RecyclerTouchListener.OnItemClickListener() {
           @Override
-          public void onItemClick(View view, int position) {
+          public void onItemClick(View view, final int cyclePosition) {
               System.out.println("onClick method inside recyclerView");
-            if(position > 1)
-            {
-                System.out.println("inside if");
-                FragmentManager frag = getActivity().getSupportFragmentManager();
-                frag.beginTransaction().replace(R.id.content,((HomeTabActivity.SectionsPagerAdapter)viewPager.getAdapter()).getFragment(position) ).commit();
+
+            System.out.println("inside if: position " + cyclePosition);
+            if(cyclePosition>1) {
+                HomeTabActivity.SectionsPagerAdapter SPA = (HomeTabActivity.SectionsPagerAdapter) viewPager.getAdapter();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.beginTransaction(R.id.content, new home_tab()).commit();
             }
           }
           @Override

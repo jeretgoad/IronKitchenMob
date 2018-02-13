@@ -1,7 +1,10 @@
 package com.ironkitchen.ironkitchenmob;
 
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +19,11 @@ import android.widget.AdapterViewFlipper;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Vector;
 
 import layout.FlipperAdapter;
 
@@ -30,21 +38,21 @@ public class HomeTabActivity extends AppCompatActivity{
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
+    private static List<Fragment> fraggyList;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     public static ViewPager mViewPager;
     private Intent getIntent;
     private AdapterViewFlipper viewAdapter;
-    private ArrayList<Integer> images;
+    private ArrayList<Integer> imageList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_tab);
-        images = getImages();
+        imageList = getImagesList();
         viewAdapter = (AdapterViewFlipper)findViewById(R.id.viewFlipper);
-        FlipperAdapter adapter = new FlipperAdapter(getApplicationContext(), images);
+        FlipperAdapter adapter = new FlipperAdapter(getApplicationContext(), imageList);
         viewAdapter.setAdapter(adapter);
         viewAdapter.setAutoStart(true);
         viewAdapter.setFlipInterval(10000);
@@ -52,7 +60,8 @@ public class HomeTabActivity extends AppCompatActivity{
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        fraggyList = getFragmentsList();
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), fraggyList);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -67,7 +76,7 @@ public class HomeTabActivity extends AppCompatActivity{
 
     }
 
-    public ArrayList<Integer> getImages()
+    public ArrayList<Integer> getImagesList()
     {
         ArrayList<Integer> images = new ArrayList<Integer>();
         images.add(R.drawable.burritoes);
@@ -83,6 +92,15 @@ public class HomeTabActivity extends AppCompatActivity{
         return images;
     }
 
+    public List<Fragment> getFragmentsList()
+    {
+        List<Fragment> fragments = new Vector<Fragment>();
+        fragments.add(new home_tab());
+        fragments.add(new meal_prep());
+        fragments.add(new family_prep());
+        fragments.add(new iron_lunch());
+        return fragments;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,8 +116,11 @@ public class HomeTabActivity extends AppCompatActivity{
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        private List<Fragment> mFragments;
+
+        public SectionsPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
             super(fm);
+            mFragments = fragments;
         }
 
         public Fragment getFragment(int position)
@@ -108,31 +129,16 @@ public class HomeTabActivity extends AppCompatActivity{
         }
 
         @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    home_tab tab1 = new home_tab();
-                    return tab1;
-                case 1:
-                    meal_prep tab2 = new meal_prep();
-                    return tab2;
-                case 2:
-                    family_prep tab3 = new family_prep();
-                    return tab3;
-                case 3:
-                    iron_lunch tab4 = new iron_lunch();
-                    return tab4;
-                default:
-                    return null;
-            }
+        public int getCount() {
+            return mFragments.size();
         }
-
-
 
         @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 4;
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
         }
+
     }
+
+
 }
