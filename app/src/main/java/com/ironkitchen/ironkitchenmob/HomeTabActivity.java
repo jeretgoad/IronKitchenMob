@@ -62,6 +62,7 @@ public class HomeTabActivity extends AppCompatActivity{
         viewAdapter.startFlipping();
         fraggyList = getFragmentsList();
         rv = (RecyclerView)findViewById(R.id.recView1);
+
         System.out.println("RecyclerView size from activity: " + rv.getChildCount());
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
