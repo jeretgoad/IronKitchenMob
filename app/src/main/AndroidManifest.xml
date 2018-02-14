@@ -21,6 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeTabActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

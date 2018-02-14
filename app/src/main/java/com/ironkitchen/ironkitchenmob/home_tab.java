@@ -38,8 +38,6 @@ public class home_tab extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i("onCreate", "created");
-        System.out.println("onCreate bitch");
         daView =  inflater.inflate(R.layout.fragment_home_tab, container, false);
         recyclerView = (RecyclerView) daView.findViewById(R.id.recView1);
         recyclerView.setHasFixedSize(true);
@@ -59,9 +57,7 @@ public class home_tab extends Fragment {
 
             System.out.println("inside if: position " + cyclePosition);
             if(cyclePosition>1) {
-                HomeTabActivity.SectionsPagerAdapter SPA = (HomeTabActivity.SectionsPagerAdapter) viewPager.getAdapter();
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction(R.id.content, SPA.getFragment(cyclePosition)).commit();
+
             }
           }
           @Override

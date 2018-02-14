@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
@@ -46,6 +47,8 @@ public class HomeTabActivity extends AppCompatActivity{
     private Intent getIntent;
     private AdapterViewFlipper viewAdapter;
     private ArrayList<Integer> imageList;
+    private RecyclerView rv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +60,11 @@ public class HomeTabActivity extends AppCompatActivity{
         viewAdapter.setAutoStart(true);
         viewAdapter.setFlipInterval(10000);
         viewAdapter.startFlipping();
-
+        fraggyList = getFragmentsList();
+        rv = (RecyclerView)findViewById(R.id.recView1);
+        System.out.println("RecyclerView size from activity: " + rv.getChildCount());
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        fraggyList = getFragmentsList();
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), fraggyList);
 
         // Set up the ViewPager with the sections adapter.
@@ -69,7 +73,6 @@ public class HomeTabActivity extends AppCompatActivity{
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
 
