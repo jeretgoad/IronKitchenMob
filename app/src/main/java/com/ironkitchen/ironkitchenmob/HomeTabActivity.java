@@ -15,7 +15,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
-import android.view.View;
 import android.widget.AdapterViewFlipper;
 
 
@@ -29,7 +28,7 @@ import java.util.Vector;
 
 import layout.FlipperAdapter;
 
-public class HomeTabActivity extends AppCompatActivity {
+public class HomeTabActivity extends AppCompatActivity{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -39,7 +38,7 @@ public class HomeTabActivity extends AppCompatActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    public static SectionsPagerAdapter mSectionsPagerAdapter;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
     private static List<Fragment> fraggyList;
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -48,7 +47,7 @@ public class HomeTabActivity extends AppCompatActivity {
     private Intent getIntent;
     private AdapterViewFlipper viewAdapter;
     private ArrayList<Integer> imageList;
-    public TabLayout tabLayout;
+    private RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +61,9 @@ public class HomeTabActivity extends AppCompatActivity {
         viewAdapter.setFlipInterval(10000);
         viewAdapter.startFlipping();
         fraggyList = getFragmentsList();
+        rv = (RecyclerView)findViewById(R.id.recView1);
 
+        System.out.println("RecyclerView size from activity: " + rv.getChildCount());
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), fraggyList);
@@ -71,10 +72,11 @@ public class HomeTabActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
 
     }
 
@@ -94,7 +96,7 @@ public class HomeTabActivity extends AppCompatActivity {
         return images;
     }
 
-    public static List<Fragment> getFragmentsList()
+    public List<Fragment> getFragmentsList()
     {
         List<Fragment> fragments = new Vector<Fragment>();
         fragments.add(new home_tab());
@@ -104,17 +106,13 @@ public class HomeTabActivity extends AppCompatActivity {
         return fragments;
     }
 
-    public void choosePage(int position)
-    {
-       mViewPager.setCurrentItem(position);
-    }
 
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public static class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         private List<Fragment> mFragments;
 
@@ -123,11 +121,11 @@ public class HomeTabActivity extends AppCompatActivity {
             mFragments = fragments;
         }
 
-        public void updateFragment(int position)
+        public Fragment getFragment(int position)
         {
-            getItem(position);
-            notifyDataSetChanged();
+            return mSectionsPagerAdapter.getItem(position);
         }
+
         @Override
         public int getCount() {
             return mFragments.size();
@@ -137,8 +135,6 @@ public class HomeTabActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             return mFragments.get(position);
         }
-
-
 
     }
 
