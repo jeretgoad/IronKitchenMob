@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.view.View;
 import android.widget.AdapterViewFlipper;
 
 
@@ -28,7 +29,7 @@ import java.util.Vector;
 
 import layout.FlipperAdapter;
 
-public class HomeTabActivity extends AppCompatActivity{
+public class HomeTabActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -38,7 +39,7 @@ public class HomeTabActivity extends AppCompatActivity{
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    public static SectionsPagerAdapter mSectionsPagerAdapter;
     private static List<Fragment> fraggyList;
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -47,7 +48,7 @@ public class HomeTabActivity extends AppCompatActivity{
     private Intent getIntent;
     private AdapterViewFlipper viewAdapter;
     private ArrayList<Integer> imageList;
-    private RecyclerView rv;
+    public TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +62,7 @@ public class HomeTabActivity extends AppCompatActivity{
         viewAdapter.setFlipInterval(10000);
         viewAdapter.startFlipping();
         fraggyList = getFragmentsList();
-        rv = (RecyclerView)findViewById(R.id.recView1);
 
-        System.out.println("RecyclerView size from activity: " + rv.getChildCount());
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), fraggyList);
@@ -72,11 +71,10 @@ public class HomeTabActivity extends AppCompatActivity{
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
-
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
     }
 
@@ -96,7 +94,7 @@ public class HomeTabActivity extends AppCompatActivity{
         return images;
     }
 
-    public List<Fragment> getFragmentsList()
+    public static List<Fragment> getFragmentsList()
     {
         List<Fragment> fragments = new Vector<Fragment>();
         fragments.add(new home_tab());
@@ -106,11 +104,9 @@ public class HomeTabActivity extends AppCompatActivity{
         return fragments;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home_tab, menu);
-        return true;
+    public void choosePage(int position)
+    {
+       mViewPager.setCurrentItem(position);
     }
 
 
@@ -118,7 +114,7 @@ public class HomeTabActivity extends AppCompatActivity{
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public static class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         private List<Fragment> mFragments;
 
@@ -127,11 +123,11 @@ public class HomeTabActivity extends AppCompatActivity{
             mFragments = fragments;
         }
 
-        public Fragment getFragment(int position)
+        public void updateFragment(int position)
         {
-            return mSectionsPagerAdapter.getItem(position);
+            getItem(position);
+            notifyDataSetChanged();
         }
-
         @Override
         public int getCount() {
             return mFragments.size();
@@ -141,6 +137,8 @@ public class HomeTabActivity extends AppCompatActivity{
         public Fragment getItem(int position) {
             return mFragments.get(position);
         }
+
+
 
     }
 

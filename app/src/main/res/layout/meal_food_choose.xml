@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/mealChoiceItem"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="#000"
+        app:layout_constraintBottom_toTopOf="@id/pound1Price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mealChoiseImageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="this"
+        android:textColor="#fff"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/mealChoiceItem"
+        app:layout_constraintEnd_toEndOf="@id/mealChoiceItem"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/mealChoiceItem"
+        app:layout_constraintTop_toTopOf="@id/mealChoiceItem"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/pound1Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$12.00"
+        app:layout_constraintBottom_toTopOf="@+id/pound1Button"
+        app:layout_constraintEnd_toStartOf="@+id/pound5Price"
+        app:layout_constraintStart_toStartOf="@+id/mealChoiceItem"
+        app:layout_constraintTop_toBottomOf="@+id/mealChoiceItem" />
+
+    <TextView
+        android:id="@+id/pound5Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$12.00"
+        app:layout_constraintBottom_toTopOf="@+id/pound5Button"
+        app:layout_constraintEnd_toEndOf="@+id/mealChoiceItem"
+        app:layout_constraintStart_toEndOf="@+id/pound1Price"
+        app:layout_constraintTop_toTopOf="@+id/pound1Price" />
+
+    <RadioButton
+        android:id="@+id/pound1Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopof="@+id/quantityText"
+        app:layout_constraintEnd_toStartOf="@+id/pound1Text"
+        app:layout_constraintStart_toStartOf="@+id/pound1Price"
+        app:layout_constraintTop_toBottomOf="@+id/pound1Price" />
+
+    <TextView
+        android:id="@+id/pound1Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 lbs"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/pound1Button"
+        app:layout_constraintEnd_toEndOf="@+id/pound1Price"
+        app:layout_constraintStart_toEndOf="@+id/pound1Button"
+        app:layout_constraintTop_toTopOf="@+id/pound1Button" />
+
+    <RadioButton
+        android:id="@+id/pound5Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopof="@+id/quantityBox"
+        app:layout_constraintEnd_toStartOf="@+id/pound5Text"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/pound5Price"
+        app:layout_constraintTop_toBottomOf="@+id/pound5Price" />
+
+    <TextView
+        android:id="@+id/pound5Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5 lbs"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/pound5Button"
+        app:layout_constraintEnd_toEndOf="@+id/pound5Price"
+        app:layout_constraintStart_toEndOf="@+id/pound5Button"
+        app:layout_constraintTop_toTopOf="@+id/pound5Button" />
+
+    <TextView
+        android:id="@+id/quantityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity: "
+        android:textColor="#000"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/quantityBox"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pound5Button" />
+
+    <EditText
+        android:id="@+id/quantityBox"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/quantity_borders"
+        android:hint="0"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/quantityText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/quantityText"
+        app:layout_constraintTop_toTopOf="@+id/quantityText" />
+
+
+</android.support.constraint.ConstraintLayout>

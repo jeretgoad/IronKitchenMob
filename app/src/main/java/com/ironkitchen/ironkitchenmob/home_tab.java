@@ -2,8 +2,11 @@ package com.ironkitchen.ironkitchenmob;
 
 
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
 import android.content.Context;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -20,26 +23,32 @@ import android.R.*;
 import android.widget.AdapterView;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 
 /**
  * Created by jeretgoad on 1/21/18.
  */
 
+
 public class home_tab extends Fragment {
 
     private View daView;
     private ViewPager viewPager;
+    private HomeTabActivity.SectionsPagerAdapter myAdapter;
     private RecyclerView recyclerView;
     private GridLayoutManager mobGridLayout;
     private RecyclerView.Adapter mobAdapter;
     private ArrayList<MobTabObjects> mobObjects;
+    private List<Fragment> frags;
+    private HomeTabActivity.SectionsPagerAdapter SPA;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         daView =  inflater.inflate(R.layout.fragment_home_tab, container, false);
-        recyclerView = (RecyclerView) daView.findViewById(R.id.recView1);
+        recyclerView = (RecyclerView) daView.findViewById(R.id.homeRecView);
         recyclerView.setHasFixedSize(true);
         mobGridLayout = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mobGridLayout);
@@ -47,9 +56,6 @@ public class home_tab extends Fragment {
         mobAdapter = new MobAdapter(getActivity(), mobObjects);
         recyclerView.setAdapter(mobAdapter);
         recyclerView.setLayoutManager(mobGridLayout);
-        System.out.println(recyclerView.getAdapter().getItemCount());
-        viewPager = HomeTabActivity.mViewPager;
-
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new RecyclerTouchListener.OnItemClickListener() {
           @Override
           public void onItemClick(View view, final int cyclePosition) {
@@ -57,7 +63,7 @@ public class home_tab extends Fragment {
 
             System.out.println("inside if: position " + cyclePosition);
             if(cyclePosition>1) {
-
+                ((HomeTabActivity) getActivity()).choosePage(cyclePosition-1);
             }
           }
           @Override
@@ -67,6 +73,7 @@ public class home_tab extends Fragment {
         }));
         return daView;
     }
+
 
 
     public ArrayList<MobTabObjects> getMobList()
@@ -86,6 +93,7 @@ public class home_tab extends Fragment {
 
         return mobObjects;
     }
+
 
     public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
