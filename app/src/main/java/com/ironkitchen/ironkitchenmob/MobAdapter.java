@@ -59,7 +59,7 @@ class MobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final int image_double = 2;
 
     Context context;
-    ArrayList<MobTabObjects> mobObjects;
+    private static ArrayList<MobTabObjects> mobObjects;
 
 
     public MobAdapter(Context context, ArrayList<MobTabObjects> mobObjects) {
