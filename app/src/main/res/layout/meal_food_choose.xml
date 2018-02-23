@@ -18,10 +18,11 @@
         android:layout_marginTop="8dp"
         android:background="#000"
 
-        app:layout_constraintBottom_toTopOf="@+id/leftConstraint"
+        app:layout_constraintBottom_toTopOf="@id/leftConstraint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/mealChoiseImageTitle"
@@ -42,7 +43,7 @@
         android:id="@+id/leftConstraint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/totalPrice"
         app:layout_constraintEnd_toStartOf="@id/rightConstraint"
         app:layout_constraintStart_toStartOf="@id/mealChoiceItem"
         app:layout_constraintTop_toBottomOf="@id/mealChoiceItem">
@@ -92,11 +93,10 @@
             android:text="Quantity: "
             android:textColor="#000"
             android:textSize="17sp"
-            app:layout_constraintBottom_toTopOf="@+id/totalPriceLeft"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/pound1Text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pound1Price"
-            app:layout_constraintVertical_bias="0.69" />
+            app:layout_constraintTop_toBottomOf="@+id/pound1Price" />
 
         <EditText
             android:id="@+id/quantityBoxLeft"
@@ -113,25 +113,13 @@
             app:layout_constraintEnd_toEndOf="@+id/pound1Text"
             app:layout_constraintStart_toEndOf="@+id/quantityTextLeft"
             app:layout_constraintTop_toTopOf="@+id/quantityTextLeft" />
-
-        <TextView
-            android:id="@+id/totalPriceLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$0.00"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/pound1Text"
-            app:layout_constraintStart_toStartOf="@+id/pound1Button"
-            app:layout_constraintTop_toBottomOf="@+id/quantityBoxLeft" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/rightConstraint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/totalPrice"
         app:layout_constraintEnd_toEndOf="@id/mealChoiceItem"
         app:layout_constraintStart_toEndOf="@id/leftConstraint"
         app:layout_constraintTop_toBottomOf="@id/mealChoiceItem">
@@ -181,11 +169,10 @@
             android:text="Quantity: "
             android:textColor="#000"
             android:textSize="17sp"
-            app:layout_constraintBottom_toTopOf="@+id/totalPriceRight"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/pound5Text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pound5Price"
-            app:layout_constraintVertical_bias="0.69" />
+            app:layout_constraintTop_toBottomOf="@+id/pound5Price" />
 
         <EditText
             android:id="@+id/quantityBoxRight"
@@ -202,17 +189,18 @@
             app:layout_constraintEnd_toEndOf="@+id/pound5Text"
             app:layout_constraintStart_toEndOf="@+id/quantityTextRight"
             app:layout_constraintTop_toTopOf="@+id/quantityTextRight" />
-
-        <TextView
-            android:id="@+id/totalPriceRight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$0.00"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/pound5Text"
-            app:layout_constraintStart_toStartOf="@+id/pound5Button"
-            app:layout_constraintTop_toBottomOf="@+id/quantityBoxRight" />
     </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/totalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="$0.00"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leftConstraint" />
 </android.support.constraint.ConstraintLayout>
