@@ -19,4 +19,12 @@ public class MealTabOjects {
         this.price5Lbs = price5Lbs;
         this.total = 0;
     }
+
+    public void setTotal(int item) {
+        total += item;
+    }
+
+    public int getTotal() {
+        return total;
+    }
 }
