@@ -1,30 +1,42 @@
 package com.ironkitchen.ironkitchenmob;
 
+import java.util.ArrayList;
+
 /**
  * Created by user on 2/22/18.
  */
 
 public class MealTabOjects {
     String mealType;
+    ArrayList<String> seasonings;
+    ArrayList<Double> priceOpt;
     int imageID;
-    int price1Lbs;
-    int price5Lbs;
-    int total;
+    double total;
 
-    public MealTabOjects(String mealType, int imageID, int price1Lbs, int price5Lbs)
+    public MealTabOjects(String mealType, int imageID)
     {
         this.mealType = mealType;
         this.imageID = imageID;
-        this.price1Lbs = price1Lbs;
-        this.price5Lbs = price5Lbs;
-        this.total = 0;
+        this.total = 0.00;
+        this.seasonings = new ArrayList<>();
+        this.priceOpt = new ArrayList<>();
+
+    }
+
+    public void setOptionalPrices(double pound1){
+        this.priceOpt.add(pound1);
+    }
+
+    public void setSeasoning(String seasoning)
+    {
+        seasonings.add(seasoning);
     }
 
     public void setTotal(int item) {
         total += item;
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 }
