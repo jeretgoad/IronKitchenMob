@@ -21,6 +21,48 @@ import java.util.ArrayList;
  */
 
 
+// Adapter for RecyclerView inside meal_food_choose_selection.xml
+
+class InnerSelectionsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private ArrayList<MealTabOjects> theseSelections;
+    private  int selectionRowIndex = -1;
+
+    public InnerSelectionsRVAdapter(){
+
+    }
+
+    public void setMealSelectionsObjects(ArrayList<MealTabOjects> currSelections)
+    {
+        if(this.theseSelections != currSelections)
+        {
+            this.theseSelections = currSelections;
+            notifyDataSetChanged();
+        }
+    }
+
+    public void setSelectionsIndex(int index)
+    {
+        this.selectionRowIndex = index;
+    }
+
+    public class ThisMealSelections extends RecyclerView.ViewHolder{
+
+    }
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
+}
 
 // Adapter for RecyclerView in meal_food_panal.xml
 
@@ -55,10 +97,10 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             foodImageText = (TextView) itemView.findViewById(R.id.mealChoiseImageTitle);
             pound1B = (Button) itemView.findViewById(R.id.pound1Button);
             pound1PriceText = (TextView) itemView.findViewById(R.id.pound1Price);
-            quantity1Pound = (EditText) itemView.findViewById(R.id.quantityBoxLeft);
+            quantity1Pound = (EditText) itemView.findViewById(R.id.quantityBox);
             pound5B = (Button) itemView.findViewById(R.id.pound5Button);
             pound5PriceText = (TextView) itemView.findViewById(R.id.pound5Price);
-            quantity1Pound = (EditText) itemView.findViewById(R.id.quantityBoxLeft);
+            quantity1Pound = (EditText) itemView.findViewById(R.id.quantityBox);
             total = (TextView) itemView.findViewById(R.id.totalPrice);
         }
     }
@@ -156,98 +198,69 @@ class MealAdapters {
         ArrayList<MealTabOjects> panalList = new ArrayList<>();
         if(panal == 0){
             MealTabOjects steak = new MealTabOjects("Steak", R.drawable.steak);
-            steak.setOptionalPrices(12.00);
-            steak.setOptionalPrices(50.00);
-            steak.setSeasoning("1 lbs");
-            steak.setSeasoning("5 lbs");
+
             panalList.add(steak);
             MealTabOjects turkey = new MealTabOjects("Turkey", R.drawable.turkey);
-            steak.setOptionalPrices(11.00);
-            steak.setOptionalPrices(45.00);
-            steak.setSeasoning("1 lbs");
-            steak.setSeasoning("5 lbs");
+            steak.addMealTabObject("1 lbs", 11.00);
+            steak.addMealTabObject("5 lbs", 45.00);
             panalList.add(turkey);
             MealTabOjects cb = new MealTabOjects("Chicken Breast", R.drawable.chic_breast);
-            cb.setOptionalPrices(10.00);
-            cb.setOptionalPrices(40.00);
-            cb.setOptionalPrices(11.00);
-            cb.setOptionalPrices(45.00);
-            cb.setSeasoning("1 lbs Chipotle/dry");
-            cb.setSeasoning("5 lbs Chipotle/dry");
-            cb.setSeasoning("1 lbs Teriyaki/wet");
-            cb.setSeasoning("5 lbs Teriyaki/wet");
+            cb.addMealTabObject("1 lbs Chipotle/dry", 10.00);
+            cb.addMealTabObject("5 lbs Chipotle/dry", 40.00);
+            cb.addMealTabObject("1 lbs Teriyaki/wet", 11.00);
+            cb.addMealTabObject("5 lbs Teriyaki/wet",45.00);
             panalList.add(cb);
             MealTabOjects shredChic = new MealTabOjects("Shredded Chicken", R.drawable.shred_chicken);
-            shredChic.setOptionalPrices(10.00);
-            shredChic.setOptionalPrices(40.00);
-            steak.setSeasoning("1 lbs");
-            steak.setSeasoning("5 lbs");
+            shredChic.addMealTabObject("1 lbs", 10.00);
+            shredChic.addMealTabObject("5 lbs", 40.00);
             panalList.add(shredChic);
             return panalList;
         }
         else if(panal == 1){
             MealTabOjects redPot = new MealTabOjects("Red Potatoes", R.drawable.red_pot);
-            redPot.setOptionalPrices(7.00);
-            redPot.setOptionalPrices(30.00);
-            redPot.setOptionalPrices(7.99);
-            redPot.setOptionalPrices(35.00);
-            redPot.setSeasoning("1 lbs");
-            redPot.setSeasoning("5 lbs");
-            redPot.setSeasoning("1 lbs Cajun");
-            redPot.setSeasoning("5 lbs Cajun");
+            redPot.addMealTabObject("1 lbs", 7.00);
+            redPot.addMealTabObject("5 lbs", 30.00);
+            redPot.addMealTabObject("1 lbs Cajun", 7.99);
+            redPot.addMealTabObject("5 lbs Cajun",35.00);
             panalList.add(redPot);
             MealTabOjects jasRice = new MealTabOjects("Jasmine Rice", R.drawable.jasmine_rice);
-            jasRice.setOptionalPrices(5.00,);
-            jasRice.setOptionalPrices(20.00);
-            redPot.setSeasoning("1 lbs");
-            redPot.setSeasoning("5 lbs");
+            jasRice.addMealTabObject("1 lbs", 5.00);
+            jasRice.addMealTabObject("5 lbs", 20.00);
             panalList.add(jasRice);
             MealTabOjects sweetPot = new MealTabOjects("Sweet Potatoes", R.drawable.sweet_potatoes);
-            sweetPot.setOptionalPrices(7.00);
-            sweetPot.setOptionalPrices(30.00);
-            sweetPot.setOptionalPrices(7.99);
-            sweetPot.setOptionalPrices(7.99);
-            sweetPot.setSeasoning("1 lbs");
-            sweetPot.setSeasoning("5 lbs");
-            sweetPot.setSeasoning("1 lbs B. Suger Cinnimon");
-            sweetPot.setSeasoning("1 lbs Cajun");
+            sweetPot.addMealTabObject("1 lbs",7.00);
+            sweetPot.addMealTabObject("5 lbs", 30.00);
+            sweetPot.addMealTabObject("1 lbs B. Suger Cinnimon", 7.99);
+            sweetPot.addMealTabObject("1 lbs Cajun",7.99);
             panalList.add(sweetPot);
             return panalList;
         }
         else if(panal == 2)
         {
             MealTabOjects vegMed = new MealTabOjects("Vegetable Medley", R.drawable.veg_medley);
-            vegMed.setOptionalPrices(8.00);
-            vegMed.setOptionalPrices(35.00);
-            vegMed.setSeasoning("1 lbs");
-            vegMed.setSeasoning("5 lbs");
+            vegMed.addMealTabObject("1 lbs", 8.00);
+            vegMed.addMealTabObject("5 lbs",35.00);
             panalList.add(vegMed);
             MealTabOjects zucSquash = new MealTabOjects("Zucchini / Squash Mix", R.drawable.zuc_squash_mix);
-            zucSquash.setOptionalPrices(8.00);
-            zucSquash.setOptionalPrices(35.00);
-            zucSquash.setSeasoning("1 lbs");
-            zucSquash.setSeasoning("5 lbs");
+            zucSquash.addMealTabObject("1 lbs",8.00);
+            zucSquash.addMealTabObject("5 lbs",35.00);
             panalList.add(zucSquash);
             MealTabOjects broccoli = new MealTabOjects("Broccoli", R.drawable.broccoli);
-            broccoli.setOptionalPrices(8.00);
-            broccoli.setOptionalPrices(35.00);
-            broccoli.setSeasoning("1 lbs");
-            broccoli.setSeasoning("5 lbs");
+            broccoli.addMealTabObject("1 lbs", 8.00);
+            broccoli.addMealTabObject("5 lbs", 35.00);
             panalList.add(broccoli);
             return panalList;
         }
         else {
             MealTabOjects tacoBowl = new MealTabOjects("Taco Bowl", R.drawable.taco_bowl);
-            tacoBowl.setOptionalPrices(7.00);
-            tacoBowl.setOptionalPrices(7.00);
-            tacoBowl.setSeasoning("Chicken");
-            tacoBowl.setSeasoning("Turkey");
+            tacoBowl.addMealTabObject("Chicken",7.00);
+            tacoBowl.addMealTabObject("Turkey",7.00);
             panalList.add(tacoBowl);
             MealTabOjects bufChicRice = new MealTabOjects("Buffalo Chicken Rice", R.drawable.buff_chic_rice);
-            bufChicRice.setOptionalPrices(8.00);
+            bufChicRice.setPrice(8.00);
             panalList.add(bufChicRice);
             MealTabOjects chicPeppers = new MealTabOjects("Chicken Peppers", R.drawable.chicken_peppers);
-            chicPeppers.setOptionalPrices(8.00);
+            chicPeppers.setPrice(8.00);
             panalList.add(chicPeppers);
             return panalList;
         }
