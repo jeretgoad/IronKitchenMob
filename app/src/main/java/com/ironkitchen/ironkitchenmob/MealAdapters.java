@@ -191,14 +191,30 @@ class OuterRVAdapter extends RecyclerView.Adapter<OuterRVAdapter.PanalViewHolder
 }
 
 class MealAdapters {
-
+    public static Context context;
     private String[] panalTitles;
     public static ArrayList<ArrayList<MealTabOjects>> mealSections;
-    public static Context context;
+    public static OuterRVAdapter outAdapter;
 
     public MealAdapters(Context context){
         this.context = context;
+        this.panalTitles = getPanalTitles();
         this.mealSections = getPanals();
+        outAdapter = new OuterRVAdapter(this.context, this.mealSections, this.panalTitles);
+    }
+
+    public OuterRVAdapter getOuterAdapter(){
+        return outAdapter;
+    }
+
+    public String[] getPanalTitles()
+    {
+        String[] panalTitlesTmp = new String[4];
+        panalTitlesTmp[0] = "Proteins By The Pound";
+        panalTitlesTmp[1] = "Carbs By The Pound";
+        panalTitlesTmp[2] = "Vegetables By The Pound";
+        panalTitlesTmp[3] = "Individual Meals";
+        return panalTitlesTmp;
     }
 
     public ArrayList<ArrayList<MealTabOjects>> getPanals(){
