@@ -32,7 +32,7 @@ public class MealTabOjects {
         MealTabOjects thisMeal = new MealTabOjects();
         thisMeal.setSeasoning(season);
         thisMeal.setPrice(price);
-        selections.add(thisMeal);
+        this.selections.add(thisMeal);
     }
 
     public void setPrice(double price){
@@ -55,6 +55,10 @@ public class MealTabOjects {
 
     public double getTotal() {
         return total;
+    }
+
+    public ArrayList<MealTabOjects> getMealSelections() {
+        return this.selections;
     }
 
     public double getMealSelectionsTotal()

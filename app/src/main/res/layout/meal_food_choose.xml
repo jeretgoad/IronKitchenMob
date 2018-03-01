@@ -27,7 +27,6 @@
         android:id="@+id/mealChoiceImageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="this"
         android:textColor="#fff"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -55,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="$0.00"
+
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

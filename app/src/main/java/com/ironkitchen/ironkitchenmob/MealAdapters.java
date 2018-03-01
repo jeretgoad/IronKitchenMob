@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPicker;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -42,33 +43,49 @@ class InnerSelectionsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public void setSelectionsIndex(int index)
     {
+
         this.selectionRowIndex = index;
     }
 
-    public class ThisMealSelections extends RecyclerView.ViewHolder{
+    public class ThisSelectionsViewHolder extends RecyclerView.ViewHolder{
+        private TextView selectionLabel, selectionPrice;
+        private ScrollableNumberPicker quantitySNP;
 
+        public ThisSelectionsViewHolder(View view)
+        {
+            super(view);
+            selectionLabel = (TextView) view.findViewById(R.id.selectionText);
+            selectionPrice = (TextView) view.findViewById(R.id.selectionPrice);
+            quantitySNP = (ScrollableNumberPicker) view.findViewById(R.id.scrollNP);
+        }
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        Context context = parent.getContext();
+        View selectionView = LayoutInflater.from(context).inflate(R.layout.meal_food_choose_selection, parent, false);
+        ThisSelectionsViewHolder selectionHolder = new ThisSelectionsViewHolder(selectionView);
+        return selectionHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+        ThisSelectionsViewHolder selectionHolder = (ThisSelectionsViewHolder) holder;
+        selectionHolder.selectionLabel.setText(theseSelections.get(position).getSeasoning());
+        selectionHolder.selectionPrice.setText("$" + theseSelections.get(position).getPrice());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return this.theseSelections.size();
     }
 }
 
 // Adapter for RecyclerView in meal_food_panal.xml
 
 class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private ArrayList<MealTabOjects> mealObjects;
+    private static ArrayList<MealTabOjects> mealObjects;
     private int mRowIndex = -1;
+    private static RecyclerView selectionRV;
 
     public InnerRVAdapter() {
 
@@ -85,31 +102,27 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         mRowIndex = index;
     }
 
-    public class ThisPanalViewHolder extends RecyclerView.ViewHolder{
+    public static class ThisPanalViewHolder extends RecyclerView.ViewHolder{
         private ImageView foodImage;
-        private TextView foodImageText, pound1PriceText, pound5PriceText, total;
-        private Button pound1B, pound5B;
-        private EditText quantity1Pound, quantity5Pound;
+        private TextView foodImageText, total;
+        private InnerSelectionsRVAdapter innerSelectionsAdapter;
 
         public ThisPanalViewHolder(View itemView){
             super(itemView);
+            Context context = itemView.getContext();
             foodImage = (ImageView) itemView.findViewById(R.id.mealChoiceItem);
-            foodImageText = (TextView) itemView.findViewById(R.id.mealChoiseImageTitle);
-            pound1B = (Button) itemView.findViewById(R.id.pound1Button);
-            pound1PriceText = (TextView) itemView.findViewById(R.id.pound1Price);
-            quantity1Pound = (EditText) itemView.findViewById(R.id.quantityBox);
-            pound5B = (Button) itemView.findViewById(R.id.pound5Button);
-            pound5PriceText = (TextView) itemView.findViewById(R.id.pound5Price);
-            quantity1Pound = (EditText) itemView.findViewById(R.id.quantityBox);
+            foodImageText = (TextView) itemView.findViewById(R.id.mealChoiceImageTitle);
+            selectionRV = (RecyclerView) itemView.findViewById(R.id.mealChoiceSelectionRV);
+            selectionRV.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false));
+            innerSelectionsAdapter = new InnerSelectionsRVAdapter();
             total = (TextView) itemView.findViewById(R.id.totalPrice);
         }
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        View itemView = LayoutInflater.from(context).inflate(R.layout.meal_food_choose, parent, false);
-        ThisPanalViewHolder holder = new ThisPanalViewHolder(itemView);
-        return holder;
+        View itemView = LayoutInflater.from(context).inflate(R.layout.meal_food_choose, parent, false);;
+        return new ThisPanalViewHolder(itemView);
     }
 
     @Override
@@ -117,9 +130,9 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ThisPanalViewHolder holder = (ThisPanalViewHolder) rawHolder;
         Glide.with(holder.itemView.getContext()).load(mealObjects.get(position).imageID).into(holder.foodImage);
         holder.foodImageText.setText(mealObjects.get(position).mealType);
-        holder.pound1PriceText.setText(mealObjects.get(position).price1Lbs);
-        holder.pound5PriceText.setText(mealObjects.get(position).price5Lbs);
-        holder.total.setText(mealObjects.get(position).getTotal());
+        holder.innerSelectionsAdapter.setMealSelectionsObjects(mealObjects.get(position).getMealSelections());
+        holder.innerSelectionsAdapter.setSelectionsIndex(position);
+        holder.total.setText("$" + mealObjects.get(position).getMealSelectionsTotal());
     }
 
     @Override
@@ -178,19 +191,23 @@ class OuterRVAdapter extends RecyclerView.Adapter<OuterRVAdapter.PanalViewHolder
 }
 
 class MealAdapters {
-    private ArrayList<MealTabOjects> protein, carbs, vegtables, personalMeals;
+
     private String[] panalTitles;
-    private ArrayList<ArrayList<MealTabOjects>> mealSections;
-    private Context context;
+    public static ArrayList<ArrayList<MealTabOjects>> mealSections;
+    public static Context context;
 
     public MealAdapters(Context context){
         this.context = context;
-
+        this.mealSections = getPanals();
     }
 
     public ArrayList<ArrayList<MealTabOjects>> getPanals(){
         ArrayList<ArrayList<MealTabOjects>> thisList = new ArrayList<>();
-
+        for(int i =0; i < 4; i++)
+        {
+            ArrayList<MealTabOjects> mealSelections = getMealTabObjectsLit(i);
+            thisList.add(mealSelections);
+        }
         return thisList;
     }
 
@@ -198,7 +215,6 @@ class MealAdapters {
         ArrayList<MealTabOjects> panalList = new ArrayList<>();
         if(panal == 0){
             MealTabOjects steak = new MealTabOjects("Steak", R.drawable.steak);
-
             panalList.add(steak);
             MealTabOjects turkey = new MealTabOjects("Turkey", R.drawable.turkey);
             steak.addMealTabObject("1 lbs", 11.00);
