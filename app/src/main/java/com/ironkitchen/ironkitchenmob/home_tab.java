@@ -35,14 +35,10 @@ import java.util.Vector;
 public class home_tab extends Fragment {
 
     private View daView;
-    private ViewPager viewPager;
-    private HomeTabActivity.SectionsPagerAdapter myAdapter;
     private RecyclerView recyclerView;
     private GridLayoutManager mobGridLayout;
     private RecyclerView.Adapter mobAdapter;
     private ArrayList<MobTabObjects> mobObjects;
-    private List<Fragment> frags;
-    private HomeTabActivity.SectionsPagerAdapter SPA;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

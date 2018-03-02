@@ -14,6 +14,7 @@ public class meal_prep extends Fragment {
     private View mealView;
     private RecyclerView mealRV;
     private MealAdapters mealAdapters;
+    private OuterRVAdapter outerRVAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -22,7 +23,8 @@ public class meal_prep extends Fragment {
         mealView = inflater.inflate(R.layout.fragment_meal_prep, container, false);
         mealRV  = (RecyclerView) mealView.findViewById(R.id.mealChoiceSelectionRV);
         mealAdapters = new MealAdapters(getActivity());
-        mealRV.setAdapter(mealAdapters);
+        outerRVAdapter = mealAdapters.getOuterAdapter();
+        mealRV.setAdapter(outerRVAdapter);
         mealRV.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
         return mealView;
