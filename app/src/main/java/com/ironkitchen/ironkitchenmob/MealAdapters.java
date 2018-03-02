@@ -146,7 +146,7 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 class OuterRVAdapter extends RecyclerView.Adapter<OuterRVAdapter.PanalViewHolder> {
 
     private final Context outContext;
-    private static ArrayList<ArrayList<MealTabOjects>> mMealObjects;
+    public static ArrayList<ArrayList<MealTabOjects>> mMealObjects;
     private static String[] stringPanal;
     private static RecyclerView innerRV;
 
@@ -200,11 +200,11 @@ class MealAdapters {
         this.context = context;
         this.panalTitles = getPanalTitles();
         this.mealSections = getPanals();
-        outAdapter = new OuterRVAdapter(this.context, this.mealSections, this.panalTitles);
+        this.outAdapter = new OuterRVAdapter(this.context, this.mealSections, this.panalTitles);
     }
 
     public OuterRVAdapter getOuterAdapter(){
-        return outAdapter;
+        return this.outAdapter;
     }
 
     public String[] getPanalTitles()
