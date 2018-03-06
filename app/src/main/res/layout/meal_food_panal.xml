@@ -21,19 +21,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
-    </android.support.constraint.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/textPanal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#333333"
-        android:textSize="35sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@+id/mealPanal"
-        app:layout_constraintEnd_toEndOf="@+id/mealPanal"
-        app:layout_constraintStart_toStartOf="@+id/mealPanal"
-        app:layout_constraintTop_toTopOf="@+id/mealPanal" />
+        <TextView
+            android:id="@+id/textPanal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="35sp"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mealPrepChoiceRecView"
