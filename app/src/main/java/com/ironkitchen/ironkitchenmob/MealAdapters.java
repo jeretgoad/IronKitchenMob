@@ -105,7 +105,7 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static class ThisPanalViewHolder extends RecyclerView.ViewHolder{
         private ImageView foodImage;
         private TextView foodImageText, total;
-        //private InnerSelectionsRVAdapter innerSelectionsAdapter;
+        private InnerSelectionsRVAdapter innerSelectionsAdapter;
 
         public ThisPanalViewHolder(View itemView){
             super(itemView);
@@ -113,8 +113,9 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             foodImage = (ImageView) itemView.findViewById(R.id.mealChoiceItem);
             foodImageText = (TextView) itemView.findViewById(R.id.mealChoiceImageTitle);
             selectionRV = (RecyclerView) itemView.findViewById(R.id.mealChoiceSelectionRV);
-            selectionRV.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false));
-            //innerSelectionsAdapter = new InnerSelectionsRVAdapter();
+            selectionRV.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,true));
+            innerSelectionsAdapter = new InnerSelectionsRVAdapter();
+            selectionRV.setAdapter(innerSelectionsAdapter);
             total = (TextView) itemView.findViewById(R.id.totalPrice);
         }
     }
@@ -130,8 +131,28 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ThisPanalViewHolder holder = (ThisPanalViewHolder) rawHolder;
         Glide.with(holder.itemView.getContext()).load(mealObjects.get(position).imageID).into(holder.foodImage);
         holder.foodImageText.setText(mealObjects.get(position).mealType);
-        //holder.innerSelectionsAdapter.setMealSelectionsObjects(mealObjects.get(position).getMealSelections());
-        //holder.innerSelectionsAdapter.setSelectionsIndex(position);
+        if(mealObjects.get(position).mealType.length() < 11)
+        {
+            holder.foodImageText.setTextSize(25);
+        }
+        else if(mealObjects.get(position).mealType.length() >= 11 && mealObjects.get(position).mealType.length() < 15)
+        {
+            holder.foodImageText.setTextSize(24);
+        }
+        else if(mealObjects.get(position).mealType.length() >= 15 && mealObjects.get(position).mealType.length() < 20)
+        {
+            holder.foodImageText.setTextSize(22);
+        }
+        else if(mealObjects.get(position).mealType.length() >= 20 && mealObjects.get(position).mealType.length() <22)
+        {
+            holder.foodImageText.setTextSize(20);
+        }
+        else
+        {
+            holder.foodImageText.setTextSize(18);
+        }
+        holder.innerSelectionsAdapter.setMealSelectionsObjects(mealObjects.get(position).getMealSelections());
+        holder.innerSelectionsAdapter.setSelectionsIndex(position);
         holder.total.setText("$" + mealObjects.get(position).getMealSelectionsTotal());
     }
 
