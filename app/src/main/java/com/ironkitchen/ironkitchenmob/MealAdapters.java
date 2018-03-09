@@ -1,6 +1,7 @@
 package com.ironkitchen.ironkitchenmob;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,10 +86,10 @@ class InnerSelectionsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static ArrayList<MealTabOjects> mealObjects;
     private int mRowIndex = -1;
-    private static RecyclerView selectionRV;
+    private final Context innerContext;
 
-    public InnerRVAdapter() {
-
+    public InnerRVAdapter(Context context) {
+        innerContext = context;
     }
 
     public void setMealObjects(ArrayList<MealTabOjects> mealObjects) {
@@ -106,6 +107,9 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private ImageView foodImage;
         private TextView foodImageText, total;
         private InnerSelectionsRVAdapter innerSelectionsAdapter;
+        private  RecyclerView selectionRV;
+        private GridLayoutManager glm;
+
 
         public ThisPanalViewHolder(View itemView){
             super(itemView);
@@ -113,7 +117,6 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             foodImage = (ImageView) itemView.findViewById(R.id.mealChoiceItem);
             foodImageText = (TextView) itemView.findViewById(R.id.mealChoiceImageTitle);
             selectionRV = (RecyclerView) itemView.findViewById(R.id.mealChoiceSelectionRV);
-            selectionRV.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,true));
             innerSelectionsAdapter = new InnerSelectionsRVAdapter();
             selectionRV.setAdapter(innerSelectionsAdapter);
             total = (TextView) itemView.findViewById(R.id.totalPrice);
@@ -151,6 +154,9 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             holder.foodImageText.setTextSize(18);
         }
+        int gridSize = mealObjects.get(position).getMealSelections().size();
+        holder.glm = new GridLayoutManager(innerContext, gridSize);
+        holder.selectionRV.setLayoutManager(holder.glm);
         holder.innerSelectionsAdapter.setMealSelectionsObjects(mealObjects.get(position).getMealSelections());
         holder.innerSelectionsAdapter.setSelectionsIndex(position);
         holder.total.setText("$" + mealObjects.get(position).getMealSelectionsTotal());
@@ -181,7 +187,7 @@ class OuterRVAdapter extends RecyclerView.Adapter<OuterRVAdapter.PanalViewHolder
             textPanal = (TextView) view.findViewById(R.id.textPanal);
             innerRV = (RecyclerView) view.findViewById(R.id.mealPrepChoiceRecView);
             innerRV.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            innerAdapter = new InnerRVAdapter();
+            innerAdapter = new InnerRVAdapter(context);
             innerRV.setAdapter(innerAdapter);
         }
     }
@@ -242,20 +248,22 @@ class MealAdapters {
         ArrayList<ArrayList<MealTabOjects>> thisList = new ArrayList<>();
         for(int i =0; i < 4; i++)
         {
-            ArrayList<MealTabOjects> mealSelections = getMealTabObjectsLit(i);
+            ArrayList<MealTabOjects> mealSelections = getMealTabObjectsList(i);
             thisList.add(mealSelections);
         }
         return thisList;
     }
 
-    public ArrayList<MealTabOjects> getMealTabObjectsLit(int panal){
+    public ArrayList<MealTabOjects> getMealTabObjectsList(int panal){
         ArrayList<MealTabOjects> panalList = new ArrayList<>();
         if(panal == 0){
             MealTabOjects steak = new MealTabOjects("Steak", R.drawable.steak);
+            steak.addMealTabObject("1 lbs", 12.00);
+            steak.addMealTabObject("5 lbs", 50.00);
             panalList.add(steak);
             MealTabOjects turkey = new MealTabOjects("Turkey", R.drawable.turkey);
-            steak.addMealTabObject("1 lbs", 11.00);
-            steak.addMealTabObject("5 lbs", 45.00);
+            turkey.addMealTabObject("1 lbs", 11.00);
+            turkey.addMealTabObject("5 lbs", 45.00);
             panalList.add(turkey);
             MealTabOjects cb = new MealTabOjects("Chicken Breast", R.drawable.chic_breast);
             cb.addMealTabObject("1 lbs Chipotle/dry", 10.00);

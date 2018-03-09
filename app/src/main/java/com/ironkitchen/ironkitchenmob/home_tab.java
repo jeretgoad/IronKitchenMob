@@ -51,7 +51,6 @@ public class home_tab extends Fragment {
         mobObjects = getMobList();
         mobAdapter = new MobAdapter(getActivity(), mobObjects);
         recyclerView.setAdapter(mobAdapter);
-        recyclerView.setLayoutManager(mobGridLayout);
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new RecyclerTouchListener.OnItemClickListener() {
           @Override
           public void onItemClick(View view, final int cyclePosition) {
