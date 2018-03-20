@@ -22,12 +22,10 @@ public class meal_prep extends Fragment {
         // Inflate the layout for this fragment
         mealView = inflater.inflate(R.layout.fragment_meal_prep, container, false);
         mealRV  = (RecyclerView) mealView.findViewById(R.id.mealRecView);
-        mealRV.setHasFixedSize(true);
         mealAdapters = new MealAdapters(getActivity());
         outerRVAdapter = mealAdapters.getOuterAdapter();
         mealRV.setAdapter(outerRVAdapter);
         mealRV.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-
         return mealView;
     }
 
