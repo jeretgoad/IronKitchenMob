@@ -43,8 +43,12 @@ public class MealTabOjects {
 
     public void setQuantity(int quantity) { this.quantity = quantity;}
 
-    public void setTotal(int item) {
+    public void addToTotal(double item) {
         this.total += item;
+    }
+
+    public void subtractFromTotal(double item) {
+        this.total -= item;
     }
 
     public double getPrice() { return this.price; }

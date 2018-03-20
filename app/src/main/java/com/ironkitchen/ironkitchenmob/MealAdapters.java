@@ -3,20 +3,21 @@ package com.ironkitchen.ironkitchenmob;
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPicker;
-
-import java.lang.reflect.Array;
+import com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPickerListener;
+\
 import java.util.ArrayList;
+\
 
 /**
  * Created by user on 2/22/18.
@@ -28,9 +29,18 @@ import java.util.ArrayList;
 class InnerSelectionsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<MealTabOjects> theseSelections;
     private  int selectionRowIndex = -1;
+    private int parentPosition;
 
     public InnerSelectionsRVAdapter(){
+    }
 
+    public void setParentPosition(int position){
+        this.parentPosition = position;
+    }
+
+
+    public int getParentPosition(){
+        return this.parentPosition;
     }
 
     public void setMealSelectionsObjects(ArrayList<MealTabOjects> currSelections)
@@ -49,16 +59,21 @@ class InnerSelectionsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public class ThisSelectionsViewHolder extends RecyclerView.ViewHolder{
-        private TextView selectionLabel, selectionPrice;
+        private TextView selectionLabel, selectionPrice, quantity;
         private ScrollableNumberPicker quantitySNP;
-
+        private int startNP = 0;
+        private  final View parentView;
+        private InnerRVAdapter innerRVAdapter;
         public ThisSelectionsViewHolder(View view)
         {
             super(view);
+            parentView = (View) view.getParentForAccessibility();
             selectionLabel = (TextView) view.findViewById(R.id.selectionText);
             selectionPrice = (TextView) view.findViewById(R.id.selectionPrice);
+            quantity = (TextView) view.findViewById(R.id.quantityText);
             quantitySNP = (ScrollableNumberPicker) view.findViewById(R.id.scrollNP);
         }
+
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -69,10 +84,41 @@ class InnerSelectionsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ThisSelectionsViewHolder selectionHolder = (ThisSelectionsViewHolder) holder;
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        final ThisSelectionsViewHolder selectionHolder = (ThisSelectionsViewHolder) holder;
         selectionHolder.selectionLabel.setText(theseSelections.get(position).getSeasoning());
-        selectionHolder.selectionPrice.setText("$" + theseSelections.get(position).getPrice());
+        String priceFormat = String.format("%.2f", theseSelections.get(position).getPrice());
+        selectionHolder.selectionPrice.setText("$" + priceFormat);
+        if(getItemCount() > 2 && getItemCount() <= 4)
+        {
+            selectionHolder.selectionLabel.setTextSize(15);
+            if(selectionHolder.selectionLabel.length() > 5)
+            {
+                selectionHolder.selectionLabel.setTextSize(13);
+            }
+            selectionHolder.selectionPrice.setTextSize(14);
+            selectionHolder.quantity.setTextSize(13);
+        }
+        else if(getItemCount() > 4)
+        {
+            selectionHolder.selectionLabel.setTextSize(13);
+            selectionHolder.selectionPrice.setTextSize(12);
+            selectionHolder.quantity.setTextSize(11);
+        }
+        selectionHolder.quantitySNP.setListener(new ScrollableNumberPickerListener() {
+            @Override
+            public void onNumberPicked(int value) {
+                if(value > selectionHolder.startNP)
+                {
+                    theseSelections.get(position).addToTotal(theseSelections.get(position).getPrice());
+                }
+                else if(value < selectionHolder.startNP){
+                    theseSelections.get(position).subtractFromTotal(theseSelections.get(position).getPrice());
+                }
+                selectionHolder.startNP = value;
+            }
+        });
+
     }
 
     @Override
@@ -89,8 +135,8 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Context innerContext;
 
     public InnerRVAdapter(Context context) {
-        innerContext = context;
-    }
+            innerContext = context;
+        }
 
     public void setMealObjects(ArrayList<MealTabOjects> mealObjects) {
         if(this.mealObjects != mealObjects){
@@ -98,14 +144,52 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             notifyDataSetChanged();
         }
     }
-
     public void setInnerRCIndex(int index){
         mRowIndex = index;
     }
 
-    public static class ThisPanalViewHolder extends RecyclerView.ViewHolder{
+    public InnerRVAdapter getInnerAdapter(){
+        return this;
+    }
+
+    public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener{
+
+        public interface ScrollableNumberPickerListener {
+            void onNumberPicked(int value);
+        }
+
+        private ScrollableNumberPickerListener SNPL;
+        private GestureDetector mGesture;
+
+        public RecyclerTouchListener(Context context, final RecyclerView innerSelView, ScrollableNumberPickerListener listener){
+            SNPL = listener;
+
+            mGesture = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onSingleTapConfirmed(MotionEvent e){
+
+                }
+            });
+        }
+        @Override
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            return false;
+        }
+
+        @Override
+        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+        }
+    }
+    public static class ThisPanalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView foodImage;
         private TextView foodImageText, total;
+        private Button addToCartButton, editCartItemsButton;
         private InnerSelectionsRVAdapter innerSelectionsAdapter;
         private  RecyclerView selectionRV;
         private GridLayoutManager glm;
@@ -120,8 +204,25 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             innerSelectionsAdapter = new InnerSelectionsRVAdapter();
             selectionRV.setAdapter(innerSelectionsAdapter);
             total = (TextView) itemView.findViewById(R.id.totalPrice);
+            addToCartButton = (Button) itemView.findViewById(R.id.addToCartButton);
+            editCartItemsButton = (Button) itemView.findViewById(R.id.editCartItemsButton);
+            editCartItemsButton.setAlpha(.2f);
+            addToCartButton.setEnabled(false);
+            addToCartButton.setAlpha(.2f);
         }
+
+        @Override
+        public void onClick(View view) {
+            if(view == addToCartButton){
+                editCartItemsButton.setAlpha(1f);
+                editCartItemsButton.setEnabled(true);
+
+            }
+        }
+
     }
+
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -159,6 +260,7 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.selectionRV.setLayoutManager(holder.glm);
         holder.innerSelectionsAdapter.setMealSelectionsObjects(mealObjects.get(position).getMealSelections());
         holder.innerSelectionsAdapter.setSelectionsIndex(position);
+        holder.innerSelectionsAdapter.setParentPosition(position);
         holder.total.setText("$" + mealObjects.get(position).getMealSelectionsTotal());
     }
 
@@ -183,7 +285,7 @@ class OuterRVAdapter extends RecyclerView.Adapter<OuterRVAdapter.PanalViewHolder
 
         public PanalViewHolder(View view) {
             super(view);
-            Context context = itemView.getContext();
+            Context context = view.getContext();
             textPanal = (TextView) view.findViewById(R.id.textPanal);
             innerRV = (RecyclerView) view.findViewById(R.id.mealPrepChoiceRecView);
             innerRV.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -318,10 +420,10 @@ class MealAdapters {
             tacoBowl.addMealTabObject("Turkey",7.00);
             panalList.add(tacoBowl);
             MealTabOjects bufChicRice = new MealTabOjects("Buffalo Chicken Rice", R.drawable.buff_chic_rice);
-            bufChicRice.setPrice(8.00);
+            bufChicRice.addMealTabObject("Buffalo Chicken Rice", 8.00);
             panalList.add(bufChicRice);
             MealTabOjects chicPeppers = new MealTabOjects("Chicken Peppers", R.drawable.chicken_peppers);
-            chicPeppers.setPrice(8.00);
+            chicPeppers.addMealTabObject("Chicken Peppers", 8.00);
             panalList.add(chicPeppers);
             return panalList;
         }

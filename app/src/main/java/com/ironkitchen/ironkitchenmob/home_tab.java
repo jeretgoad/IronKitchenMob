@@ -54,9 +54,6 @@ public class home_tab extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new RecyclerTouchListener.OnItemClickListener() {
           @Override
           public void onItemClick(View view, final int cyclePosition) {
-              System.out.println("onClick method inside recyclerView");
-
-            System.out.println("inside if: position " + cyclePosition);
             if(cyclePosition>1) {
                 ((HomeTabActivity) getActivity()).choosePage(cyclePosition-1);
             }
