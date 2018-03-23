@@ -15,9 +15,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPicker;
 import com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPickerListener;
-\
 import java.util.ArrayList;
-\
+
 
 /**
  * Created by user on 2/22/18.
@@ -29,18 +28,10 @@ import java.util.ArrayList;
 class InnerSelectionsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<MealTabOjects> theseSelections;
     private  int selectionRowIndex = -1;
-    private int parentPosition;
+    private InnerRVAdapter innerParentAdapter;
 
-    public InnerSelectionsRVAdapter(){
-    }
-
-    public void setParentPosition(int position){
-        this.parentPosition = position;
-    }
-
-
-    public int getParentPosition(){
-        return this.parentPosition;
+    public InnerSelectionsRVAdapter(InnerRVAdapter parent){
+        this.innerParentAdapter = parent;
     }
 
     public void setMealSelectionsObjects(ArrayList<MealTabOjects> currSelections)
@@ -116,6 +107,7 @@ class InnerSelectionsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     theseSelections.get(position).subtractFromTotal(theseSelections.get(position).getPrice());
                 }
                 selectionHolder.startNP = value;
+                innerParentAdapter.notifyDataSetChanged();
             }
         });
 
@@ -133,9 +125,11 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static ArrayList<MealTabOjects> mealObjects;
     private int mRowIndex = -1;
     private final Context innerContext;
+    private static InnerRVAdapter thisInnerRVAdapter;
 
     public InnerRVAdapter(Context context) {
             innerContext = context;
+            this.thisInnerRVAdapter = this;
         }
 
     public void setMealObjects(ArrayList<MealTabOjects> mealObjects) {
@@ -152,40 +146,6 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return this;
     }
 
-    public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener{
-
-        public interface ScrollableNumberPickerListener {
-            void onNumberPicked(int value);
-        }
-
-        private ScrollableNumberPickerListener SNPL;
-        private GestureDetector mGesture;
-
-        public RecyclerTouchListener(Context context, final RecyclerView innerSelView, ScrollableNumberPickerListener listener){
-            SNPL = listener;
-
-            mGesture = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
-                @Override
-                public boolean onSingleTapConfirmed(MotionEvent e){
-
-                }
-            });
-        }
-        @Override
-        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-            return false;
-        }
-
-        @Override
-        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-        }
-
-        @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-        }
-    }
     public static class ThisPanalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView foodImage;
         private TextView foodImageText, total;
@@ -193,15 +153,16 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private InnerSelectionsRVAdapter innerSelectionsAdapter;
         private  RecyclerView selectionRV;
         private GridLayoutManager glm;
+        private Context context;
 
 
         public ThisPanalViewHolder(View itemView){
             super(itemView);
-            Context context = itemView.getContext();
+            context = itemView.getContext();
             foodImage = (ImageView) itemView.findViewById(R.id.mealChoiceItem);
             foodImageText = (TextView) itemView.findViewById(R.id.mealChoiceImageTitle);
             selectionRV = (RecyclerView) itemView.findViewById(R.id.mealChoiceSelectionRV);
-            innerSelectionsAdapter = new InnerSelectionsRVAdapter();
+            innerSelectionsAdapter = new InnerSelectionsRVAdapter(thisInnerRVAdapter);
             selectionRV.setAdapter(innerSelectionsAdapter);
             total = (TextView) itemView.findViewById(R.id.totalPrice);
             addToCartButton = (Button) itemView.findViewById(R.id.addToCartButton);
@@ -260,7 +221,6 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.selectionRV.setLayoutManager(holder.glm);
         holder.innerSelectionsAdapter.setMealSelectionsObjects(mealObjects.get(position).getMealSelections());
         holder.innerSelectionsAdapter.setSelectionsIndex(position);
-        holder.innerSelectionsAdapter.setParentPosition(position);
         holder.total.setText("$" + mealObjects.get(position).getMealSelectionsTotal());
     }
 
