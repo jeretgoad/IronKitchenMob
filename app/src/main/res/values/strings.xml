@@ -3,12 +3,22 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_activity_home_tab">HomeTabActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
+    <string name="homw_tab">Mob Center</string>
+    <string name="meal_tab">Meal Prep</string>
+    <string name="family_tab">Family Plan</string>
+    <string name="lunch_tab">Iron Lunch</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_bar_meal_prep">Meal Prep</string>
+    <string name="title_bar_lunch">Lunch</string>
+    <string name="title_bar_pick_up">Pick Up:</string>
+    <string name="title_bar_sunday">Sunday</string>
+    <string name="title_bar_mp_time">11-1</string>
+    <string name="title_bar_wed">Wednesday</string>
+    <string name="title_bar_lunch_dayz">Mon.-Sat.</string>
+    <string name="title_bar_lunch_time">11-4</string>
+    <string name="title_bar_close">Closed</string>
 </resources>

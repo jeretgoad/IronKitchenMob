@@ -29,17 +29,27 @@ class InnerSelectionsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private ArrayList<MealTabOjects> theseSelections;
     private  int selectionRowIndex = -1;
     private InnerRVAdapter innerParentAdapter;
-
+    private boolean scrollState;
     public InnerSelectionsRVAdapter(InnerRVAdapter parent){
         this.innerParentAdapter = parent;
+        this.scrollState = true;
     }
 
+
+    public void setScrollState(boolean state){
+        scrollState = state;
+        notifyItemChanged(selectionRowIndex);
+    }
+
+    public boolean getScrollState(){
+        return scrollState;
+    }
     public void setMealSelectionsObjects(ArrayList<MealTabOjects> currSelections)
     {
         if(this.theseSelections != currSelections)
         {
             this.theseSelections = currSelections;
-            notifyDataSetChanged();
+            notifyItemChanged(selectionRowIndex);
         }
     }
 
@@ -96,20 +106,26 @@ class InnerSelectionsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             selectionHolder.selectionPrice.setTextSize(12);
             selectionHolder.quantity.setTextSize(11);
         }
-        selectionHolder.quantitySNP.setListener(new ScrollableNumberPickerListener() {
-            @Override
-            public void onNumberPicked(int value) {
-                if(value > selectionHolder.startNP)
-                {
-                    theseSelections.get(position).addToTotal(theseSelections.get(position).getPrice());
+        if(getScrollState()) {
+            selectionHolder.quantitySNP.setListener(new ScrollableNumberPickerListener() {
+                @Override
+                public void onNumberPicked(int value) {
+                    if (value > selectionHolder.startNP) {
+                        theseSelections.get(position).addToTotal(theseSelections.get(position).getPrice());
+                        if (!innerParentAdapter.getInnerSelChange()) {
+                            innerParentAdapter.setInnerSelChange(true);
+                        }
+                    } else if (value < selectionHolder.startNP) {
+                        theseSelections.get(position).subtractFromTotal(theseSelections.get(position).getPrice());
+                    }
+                    selectionHolder.startNP = value;
+                    innerParentAdapter.notifyDataSetChanged();
                 }
-                else if(value < selectionHolder.startNP){
-                    theseSelections.get(position).subtractFromTotal(theseSelections.get(position).getPrice());
-                }
-                selectionHolder.startNP = value;
-                innerParentAdapter.notifyDataSetChanged();
-            }
-        });
+            });
+        }
+        else{
+            selectionHolder.quantitySNP.setEnabled(false);
+        }
 
     }
 
@@ -126,6 +142,7 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private int mRowIndex = -1;
     private final Context innerContext;
     private static InnerRVAdapter thisInnerRVAdapter;
+    private static boolean innerSelChange;
 
     public InnerRVAdapter(Context context) {
             innerContext = context;
@@ -142,8 +159,12 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         mRowIndex = index;
     }
 
-    public InnerRVAdapter getInnerAdapter(){
-        return this;
+    public void setInnerSelChange(boolean change){
+        innerSelChange = change;
+    }
+
+    public boolean getInnerSelChange(){
+        return innerSelChange;
     }
 
     public static class ThisPanalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -167,18 +188,35 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             total = (TextView) itemView.findViewById(R.id.totalPrice);
             addToCartButton = (Button) itemView.findViewById(R.id.addToCartButton);
             editCartItemsButton = (Button) itemView.findViewById(R.id.editCartItemsButton);
-            editCartItemsButton.setAlpha(.2f);
-            addToCartButton.setEnabled(false);
-            addToCartButton.setAlpha(.2f);
+            addToCartButton.setOnClickListener(this);
+            editCartItemsButton.setOnClickListener(this);
+            disableButton(addToCartButton);
+            disableButton(editCartItemsButton);
         }
 
         @Override
         public void onClick(View view) {
             if(view == addToCartButton){
-                editCartItemsButton.setAlpha(1f);
-                editCartItemsButton.setEnabled(true);
-
+                enableButton(editCartItemsButton);
+                disableButton(addToCartButton);
+                innerSelectionsAdapter.setScrollState(false);
             }
+            else if(view == editCartItemsButton){
+                disableButton(editCartItemsButton);
+                innerSelectionsAdapter.setScrollState(true);
+                enableButton(addToCartButton);
+            }
+        }
+
+        public void enableButton(Button enableB)
+        {
+            enableB.setAlpha(1f);
+            enableB.setEnabled(true);
+        }
+
+        public void disableButton(Button disableB){
+            disableB.setAlpha(.2f);
+            disableB.setEnabled(false);
         }
 
     }
@@ -222,6 +260,9 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.innerSelectionsAdapter.setMealSelectionsObjects(mealObjects.get(position).getMealSelections());
         holder.innerSelectionsAdapter.setSelectionsIndex(position);
         holder.total.setText("$" + mealObjects.get(position).getMealSelectionsTotal());
+        if(!holder.addToCartButton.isEnabled() && getInnerSelChange() == true){
+            holder.enableButton(holder.addToCartButton);
+        }
     }
 
     @Override
@@ -259,6 +300,7 @@ class OuterRVAdapter extends RecyclerView.Adapter<OuterRVAdapter.PanalViewHolder
         mMealObjects = mealOjects;
         stringPanal = panalTitle;
     }
+
 
     @Override
     public PanalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

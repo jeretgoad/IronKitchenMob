@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
-        android:text="Meal Prep"
+        android:text="@string/title_bar_meal_prep"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
-        android:text="Lunch"
+        android:text="@string/title_bar_lunch"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
-        android:text="Pick Up:"
+        android:text="@string/title_bar_pick_up"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -126,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
-        android:text="Sunday"
+        android:text="@string/title_bar_sunday"
         android:textColor="@android:color/white"
         android:textSize="13sp"
         android:textStyle="bold"
@@ -142,7 +142,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="0dp"
-        android:text="11-1"
+        android:text="@string/title_bar_mp_time"
         android:textColor="@android:color/white"
         android:textSize="11sp"
         android:textStyle="bold"
@@ -158,7 +158,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="8dp"
-        android:text="Wednesday"
+        android:text="@string/title_bar_wed"
         android:textColor="@android:color/white"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -174,7 +174,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
-        android:text="11-1"
+        android:text="@string/title_bar_mp_time"
         android:textColor="@android:color/white"
         android:textSize="11sp"
         android:textStyle="bold"
@@ -190,7 +190,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Mon.-Sat."
+        android:text="@string/title_bar_lunch_dayz"
         android:textColor="@android:color/white"
         android:textSize="13sp"
         android:textStyle="bold"
@@ -206,7 +206,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="11-4"
+        android:text="@string/title_bar_lunch_time"
         android:textColor="@android:color/white"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -222,7 +222,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Sunday"
+        android:text="@string/title_bar_sunday"
         android:textColor="@android:color/white"
         android:textSize="13sp"
         android:textStyle="bold"
@@ -238,7 +238,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Closed"
+        android:text="@string/title_bar_close"
         android:textColor="@android:color/white"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -261,25 +261,25 @@
             android:id="@+id/tabItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mob Center" />
+            android:text="@string/homw_tab" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabItem2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Meal Prep" />
+            android:text="@string/meal_tab" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabItem3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Family Plan" />
+            android:text="@string/family_tab" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabItem4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Iron Lunch" />
+            android:text="@string/lunch_tab" />
     </android.support.design.widget.TabLayout>
 
     <android.support.v4.view.ViewPager
