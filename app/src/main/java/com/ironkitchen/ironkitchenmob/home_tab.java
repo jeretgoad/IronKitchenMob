@@ -2,29 +2,20 @@ package com.ironkitchen.ironkitchenmob;
 
 
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.os.Bundle;
 import android.content.Context;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.OnItemTouchListener;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.R.*;
-import android.widget.AdapterView;
+
+import com.ironkitchen.ironkitchenmob.ik_data.MobTabObjects;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
 
 
 /**

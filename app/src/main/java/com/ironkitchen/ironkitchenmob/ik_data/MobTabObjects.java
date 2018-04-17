@@ -1,4 +1,4 @@
-package com.ironkitchen.ironkitchenmob;
+package com.ironkitchen.ironkitchenmob.ik_data;
 
 /**
  * Created by jeretgoad on 1/25/18.

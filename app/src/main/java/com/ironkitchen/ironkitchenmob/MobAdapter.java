@@ -12,8 +12,9 @@ import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
-import android.R.*;
+
 import com.bumptech.glide.Glide;
+import com.ironkitchen.ironkitchenmob.ik_data.MobTabObjects;
 
 import java.util.ArrayList;
 
