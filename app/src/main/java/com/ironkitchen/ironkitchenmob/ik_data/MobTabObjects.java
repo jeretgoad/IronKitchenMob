@@ -5,32 +5,32 @@ package com.ironkitchen.ironkitchenmob.ik_data;
  */
 
 public class MobTabObjects {
-    String mealType;
-    int imageID;
-    int videoID;
-    int isButton;
+    private String mealType;
+    private int imageID;
+    private int videoID;
+    private int isButton;
 
-    public MobTabObjects(String mealType, int imageID, int isButton)
+    public MobTabObjects(String mealType, int imageID, int videoID, int isButton)
     {
         this.mealType = mealType;
         this.imageID = imageID;
-        this.videoID = 0;
-        this.isButton = isButton;
-    }
-
-    public MobTabObjects(int imageID, int isButton)
-    {
-        this.mealType = "";
-        this.imageID = imageID;
-        this.videoID = 0;
-        this.isButton = isButton;
-    }
-
-    public MobTabObjects(int imageID, int videoID, int isButton)
-    {
-        this.mealType = "";
-        this.imageID = imageID;
         this.videoID = videoID;
         this.isButton = isButton;
+    }
+
+    public String getMealType() {
+        return mealType;
+    }
+
+    public int getImageID() {
+        return imageID;
+    }
+
+    public int getVideoID() {
+        return videoID;
+    }
+
+    public int getIsButton() {
+        return isButton;
     }
 }
