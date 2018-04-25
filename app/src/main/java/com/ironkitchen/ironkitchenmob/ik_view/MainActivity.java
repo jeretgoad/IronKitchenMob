@@ -1,17 +1,11 @@
-package com.ironkitchen.ironkitchenmob;
+package com.ironkitchen.ironkitchenmob.ik_view;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import java.io.InputStream;
-
-import layout.ik_login;
-import layout.ik_register;
+import com.ironkitchen.ironkitchenmob.R;
 
 
 public class MainActivity extends AppCompatActivity {

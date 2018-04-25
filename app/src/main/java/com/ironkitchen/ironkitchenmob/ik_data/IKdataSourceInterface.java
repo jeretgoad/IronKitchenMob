@@ -14,4 +14,11 @@ public interface IKdataSourceInterface {
 
     List<FoodItemDetails> getListOfFoodItemDetailsData(FoodItem key);
 
+    MobTabObjects createNewMobTabObjects(int index);
+
+    FoodPanel createNewFoodPanel(int index);
+
+    FoodItem createNewFoodItem(String name, int imageRes);
+
+    FoodItemDetails createNewFoodItemDetails(String label, double price);
 }

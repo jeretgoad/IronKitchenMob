@@ -11,7 +11,7 @@ import com.ironkitchen.ironkitchenmob.R;
 public class FakeDataSource extends Object implements IKdataSourceInterface{
 
     // home tab data
-    private final int[] appBarSlideShowImages = {
+    private final int[] app_bar_slide_show_images = {
             R.drawable.burritoes,
             R.drawable.col2,
             R.drawable.col3,
@@ -24,7 +24,7 @@ public class FakeDataSource extends Object implements IKdataSourceInterface{
             R.drawable.frig
     };
 
-    private final String[] homeItemTitles = {
+    private final String[] home_item_titles = {
             "",
             "",
             "Meal Prep",
@@ -32,7 +32,7 @@ public class FakeDataSource extends Object implements IKdataSourceInterface{
             "Lunch"
     };
 
-    private final int[] homeItemImages = {
+    private final int[] home_item_images = {
             R.drawable.ik_loc,
             R.drawable.frig_loc,
             R.drawable.broc_chic,
@@ -40,7 +40,7 @@ public class FakeDataSource extends Object implements IKdataSourceInterface{
             R.drawable.lunch_button,
     };
 
-    private final int[] homeItemVideo = {
+    private final int[] home_item_video = {
             0,
             R.raw.ik_intro,
             0,
@@ -48,12 +48,12 @@ public class FakeDataSource extends Object implements IKdataSourceInterface{
             0
     };
 
-    private final int[] homeItemButtonType = {
+    private final int[] home_item_button_type = {
             2, 1, 0, 0, 0
     };
 
     // meal prep tab
-    private final String[] foodPanel = {
+    private final String[] food_panel = {
             "Protein By The Pound",
             "Carbs By The Pound",
             "Vegetables By The Pound",
@@ -61,7 +61,7 @@ public class FakeDataSource extends Object implements IKdataSourceInterface{
     };
 
     // protein food items
-    private final Pair<String, Integer> steak = new Pair<>("steak", R.drawable.steak);
+    private final Pair<String, Integer> steak = new Pair<>("Steak", R.drawable.steak);
     private final Pair<String, Integer> turkey = new Pair<>("Turkey", R.drawable.turkey);
     private final Pair<String, Integer> chicken_breast = new Pair<>("Chicken Breast", R.drawable.chic_breast);
     private final Pair<String, Integer> shredded_chicken = new Pair<>("Shredded Chicken", R.drawable.shred_chicken);
@@ -86,8 +86,8 @@ public class FakeDataSource extends Object implements IKdataSourceInterface{
         private final Pair<String, Double> red_potatoes_detail_2 = new Pair<>("5 lbs", 30.00);
         private final Pair<String, Double> red_potatoes_detail_3 = new Pair<>("1 lbs Cajun", 7.99);
         private final Pair<String, Double> red_potatoes_detail_4 = new Pair<>("5 lbs Cajun",35.00);
-        private final Pair<String, Double> jasmine_rice_breast_detail_1 = new Pair<>("1 lbs", 5.00);
-        private final Pair<String, Double> jasmine_rice_breast_detail_2 = new Pair<>("5 lbs", 20.00);
+        private final Pair<String, Double> jasmine_rice_detail_1 = new Pair<>("1 lbs", 5.00);
+        private final Pair<String, Double> jasmine_rice_detail_2 = new Pair<>("5 lbs", 20.00);
         private final Pair<String, Double> sweet_potatoes_detail_1 = new Pair<>("1 lbs",7.00);
         private final Pair<String, Double> sweet_potatoes_detail_2 = new Pair<>("5 lbs", 30.00);
         private final Pair<String, Double> sweet_potatoes_detail_3 = new Pair<>("1 lbs B. Sugar Cinnamon", 7.99);
@@ -120,23 +120,23 @@ public class FakeDataSource extends Object implements IKdataSourceInterface{
     private ArrayList<Pair<String, Integer>> getFoodGroup(String group)
     {
         ArrayList<Pair<String, Integer>> foodGroupArray = new ArrayList<>();
-        if(group.equalsIgnoreCase(foodPanel[0])){
+        if(group.equalsIgnoreCase(food_panel[0])){
             foodGroupArray.add(steak);
             foodGroupArray.add(turkey);
             foodGroupArray.add(chicken_breast);
             foodGroupArray.add(shredded_chicken);
         }
-        else if(group.equalsIgnoreCase(foodPanel[1])){
+        else if(group.equalsIgnoreCase(food_panel[1])){
             foodGroupArray.add(red_potatoes);
             foodGroupArray.add(jasmine_rice);
             foodGroupArray.add(sweet_potatoes);
         }
-        else if(group.equalsIgnoreCase(foodPanel[2])){
+        else if(group.equalsIgnoreCase(food_panel[2])){
             foodGroupArray.add(vegetable_medley);
             foodGroupArray.add(zucchini_squash_mix);
             foodGroupArray.add(broccoli);
         }
-        else if(group.equalsIgnoreCase(foodPanel[3])){
+        else if(group.equalsIgnoreCase(food_panel[3])){
             foodGroupArray.add(taco_bowl);
             foodGroupArray.add(buffalo_chicken_rice);
             foodGroupArray.add(chicken_peppers);
@@ -150,32 +150,148 @@ public class FakeDataSource extends Object implements IKdataSourceInterface{
             foodDetails.add(steak_detail_1);
             foodDetails.add(steak_detail_2);
         }
+        else if(food.equalsIgnoreCase(turkey.first)){
+            foodDetails.add(turkey_detail_1);
+            foodDetails.add(turkey_detail_2);
+        }
+        else if(food.equalsIgnoreCase(chicken_breast.first)){
+            foodDetails.add(chicken_breast_detail_1);
+            foodDetails.add(chicken_breast_detail_2);
+            foodDetails.add(chicken_breast_detail_3);
+            foodDetails.add(chicken_breast_detail_4);
+        }
+        else if(food.equalsIgnoreCase(shredded_chicken.first)){
+            foodDetails.add(shredded_chicken_detail_1);
+            foodDetails.add(shredded_chicken_detail_2);
+        }
+        else if(food.equalsIgnoreCase(red_potatoes.first)){
+            foodDetails.add(red_potatoes_detail_1);
+            foodDetails.add(red_potatoes_detail_2);
+            foodDetails.add(red_potatoes_detail_3);
+            foodDetails.add(red_potatoes_detail_4);
+        }
+        else if(food.equalsIgnoreCase(jasmine_rice.first)){
+            foodDetails.add(jasmine_rice_detail_1);
+            foodDetails.add(jasmine_rice_detail_2);
+        }
+        else if(food.equalsIgnoreCase(sweet_potatoes.first)){
+            foodDetails.add(sweet_potatoes_detail_1);
+            foodDetails.add(sweet_potatoes_detail_2);
+            foodDetails.add(sweet_potatoes_detail_3);
+            foodDetails.add(sweet_potatoes_detail_4);
+        }
+        else if(food.equalsIgnoreCase(vegetable_medley.first)){
+            foodDetails.add(vegetable_medley_detail_1);
+            foodDetails.add(vegetable_medley_detail_2);
+        }
+        else if(food.equalsIgnoreCase(zucchini_squash_mix.first)){
+            foodDetails.add(zucchini_squash_mix_detail_1);
+            foodDetails.add(zucchini_squash_mix_detail_2);
+        }
+        else if(food.equalsIgnoreCase(broccoli.first)){
+            foodDetails.add(broccoli_detail_1);
+            foodDetails.add(broccoli_detail_2);
+        }
+        else if(food.equalsIgnoreCase(taco_bowl.first)){
+            foodDetails.add(taco_bowl_detail_1);
+            foodDetails.add(taco_bowl_detail_2);
+        }
+        else if(food.equalsIgnoreCase(buffalo_chicken_rice.first)){
+            foodDetails.add(buffalo_chicken_rice_detail_1);
+        }
+        else if(food.equalsIgnoreCase(chicken_peppers.first)){
+            foodDetails.add(chicken_peppers_detail_1);
+        }
         return foodDetails;
     }
 
 
     @Override
     public List<Integer> getSlideShow() {
+        ArrayList<Integer> slideShowImages = new ArrayList<>();
+        for(int i =0; i < app_bar_slide_show_images.length; i++){
+            slideShowImages.add(app_bar_slide_show_images[i]);
+        }
+        return slideShowImages;
+    }
+
+    @Override
+    public List<MobTabObjects> getListOfMobTabData() {
+        ArrayList<MobTabObjects> mobTabObjects = new ArrayList<>();
+
         return null;
     }
 
     @Override
-    public List<MobTabObjects> getListOfData() {
-        return null;
+    public List<FoodPanel> getListOfFoodPanelData() {
+        ArrayList<FoodPanel> foodPanels = new ArrayList<>();
+        for(int i = 0; i < food_panel.length; i++){
+            FoodPanel foodPanel = createNewFoodPanel(i);
+            foodPanels.add(foodPanel);
+        }
+        return foodPanels;
     }
 
     @Override
-    public HashMap<String, HashMap> getHashMapData() {
-        return null;
+    public List<FoodItem> getListOfFoodItem(String key) {
+        ArrayList<FoodItem> foodItems = new ArrayList<>();
+        ArrayList<Pair<String, Integer>> foodItemsSet = getFoodGroup(key);
+        if(!foodItemsSet.isEmpty()){
+            for(int i = 0; i < foodItemsSet.size(); i++){
+                String foodName = foodItemsSet.get(i).first;
+                int foodImage = foodItemsSet.get(i).second;
+                FoodItem foodItem = createNewFoodItem(foodName, foodImage);
+                foodItems.add(foodItem);
+            }
+        }
+
+        return foodItems;
     }
 
     @Override
-    public void addToHashMap(String key, int sizeOfArray) {
-
+    public List<FoodItemDetails> getListOfFoodItemDetailsData(FoodItem key) {
+        String keyName = key.getName();
+        ArrayList<FoodItemDetails> foodItemDetails = new ArrayList<>();
+        ArrayList<Pair<String, Double>> foodItemDetailsSet = getFoodDetails(keyName);
+        if(!foodItemDetailsSet.isEmpty()){
+            for(int i = 0; i < foodItemDetailsSet.size(); i++){
+                String label = foodItemDetailsSet.get(i).first;
+                Double price = foodItemDetailsSet.get(i).second;
+                FoodItemDetails thisFoodItemDetails = createNewFoodItemDetails(label, price);
+                foodItemDetails.add(thisFoodItemDetails);
+            }
+        }
+        return foodItemDetails;
     }
 
     @Override
-    public Object createNewItem(int classID) {
-        return null;
+    public MobTabObjects createNewMobTabObjects(int index) {
+        MobTabObjects mobTabObjects = new MobTabObjects(
+                home_item_titles[index],
+                home_item_images[index],
+                home_item_video[index],
+                home_item_button_type[index]
+        );
+        return mobTabObjects;
     }
+
+    @Override
+    public FoodPanel createNewFoodPanel(int index) {
+        FoodPanel foodPanel = new FoodPanel(food_panel[index]);
+        return foodPanel;
+    }
+
+    @Override
+    public FoodItem createNewFoodItem(String name, int imageRes) {
+        FoodItem foodItem = new FoodItem(name, imageRes);
+        return foodItem;
+    }
+
+    @Override
+    public FoodItemDetails createNewFoodItemDetails(String label, double price) {
+        FoodItemDetails foodItemDetails = new FoodItemDetails(label, price);
+        return foodItemDetails;
+    }
+
+
 }

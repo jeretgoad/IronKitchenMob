@@ -1,4 +1,4 @@
-package com.ironkitchen.ironkitchenmob;
+package com.ironkitchen.ironkitchenmob.ik_view;
 
 
 import android.os.Bundle;

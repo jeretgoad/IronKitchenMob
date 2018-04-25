@@ -12,9 +12,8 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.ironkitchen.ironkitchenmob.HomeTabActivity;
+import com.ironkitchen.ironkitchenmob.ik_view.HomeTabActivity;
 import com.ironkitchen.ironkitchenmob.R;
-import android.R.*;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,4 +1,4 @@
-package com.ironkitchen.ironkitchenmob;
+package com.ironkitchen.ironkitchenmob.ik_view;
 
 
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ironkitchen.ironkitchenmob.R;
+import com.ironkitchen.ironkitchenmob.ik_view.MealAdapters;
 
 
 public class meal_prep extends Fragment {

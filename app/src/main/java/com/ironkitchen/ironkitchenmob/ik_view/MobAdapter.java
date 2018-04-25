@@ -1,4 +1,4 @@
-package com.ironkitchen.ironkitchenmob;
+package com.ironkitchen.ironkitchenmob.ik_view;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
+import com.ironkitchen.ironkitchenmob.R;
 import com.ironkitchen.ironkitchenmob.ik_data.MobTabObjects;
 
 import java.util.ArrayList;

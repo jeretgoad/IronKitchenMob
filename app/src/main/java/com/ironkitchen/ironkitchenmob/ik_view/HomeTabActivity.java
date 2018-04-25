@@ -1,4 +1,4 @@
-package com.ironkitchen.ironkitchenmob;
+package com.ironkitchen.ironkitchenmob.ik_view;
 
 
 import android.support.design.widget.TabLayout;
@@ -8,9 +8,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.content.Intent;
 import android.widget.AdapterViewFlipper;
+
+import com.ironkitchen.ironkitchenmob.R;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -62,7 +63,7 @@ public class HomeTabActivity extends AppCompatActivity{
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
-    public ArrayList<Integer> getImagesList()
+    /*public ArrayList<Integer> getImagesList()
     {
         ArrayList<Integer> images = new ArrayList<Integer>();
         images.add(R.drawable.burritoes);
@@ -76,7 +77,7 @@ public class HomeTabActivity extends AppCompatActivity{
         images.add(R.drawable.col_wid_sauce);
         images.add(R.drawable.frig);
         return images;
-    }
+    }*/
 
     public List<Fragment> getFragmentsList()
     {

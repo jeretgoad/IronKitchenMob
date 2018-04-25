@@ -1,4 +1,4 @@
-package com.ironkitchen.ironkitchenmob;
+package com.ironkitchen.ironkitchenmob.ik_view;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.ironkitchen.ironkitchenmob.R;
 import com.ironkitchen.ironkitchenmob.ik_data.MealTabOjects;
 import com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPicker;
 import com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPickerListener;
@@ -337,7 +338,7 @@ class MealAdapters {
         return this.outAdapter;
     }
 
-    public String[] getPanalTitles()
+    /*public String[] getPanalTitles()
     {
         String[] panalTitlesTmp = new String[4];
         panalTitlesTmp[0] = "Proteins By The Pound";
@@ -429,7 +430,7 @@ class MealAdapters {
             return panalList;
         }
 
-    }
+    }*/
 }
 
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ironkitchen.ironkitchenmob.meal_prep">
+    tools:context="com.ironkitchen.ironkitchenmob.ik_view.meal_prep">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mealRecView"
