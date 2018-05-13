@@ -37,7 +37,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:11.8.0'
     implementation 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2'
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:26.+'
@@ -50,6 +50,7 @@ dependencies {
     compile 'com.github.lsjwzh.RecyclerViewPager:tablayoutsupport:v1.1.2@aar'
     compile 'com.michaelmuenzer.android:ScrollableNumberPicker:0.2.2'
     compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'com.xwray:groupie:2.0.3'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
     testCompile 'junit:junit:4.12'
 }
