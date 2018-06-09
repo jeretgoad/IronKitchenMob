@@ -7,11 +7,15 @@ import java.util.Set;
 
 public class FoodPanel {
     private String panelTitle;
-    public FoodPanel(String panelTitle){
+    private int expandableIcon;
+    public FoodPanel(String panelTitle, int expandableIcon){
         this.panelTitle = panelTitle;
+        this.expandableIcon = expandableIcon;
     }
 
     public String getPanelTitle(){
         return panelTitle;
     }
+
+    public int getExpandableIcon(){return expandableIcon;}
 }
