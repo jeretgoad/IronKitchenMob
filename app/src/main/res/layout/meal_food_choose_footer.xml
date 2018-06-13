@@ -1,55 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#123c3c3c"
-    android:elevation="10dp">
-
-    <ImageView
-        android:id="@+id/mealChoiceItem"
-        android:layout_width="190dp"
-        android:layout_height="95dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/mealChoiceSelectionRV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/mealChoiceImageTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:shadowColor="#000"
-        android:shadowDx="5"
-        android:shadowDy="5"
-        android:shadowRadius="10"
-        android:textColor="#fff"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/mealChoiceItem"
-        app:layout_constraintEnd_toEndOf="@+id/mealChoiceItem"
-        app:layout_constraintStart_toStartOf="@+id/mealChoiceItem"
-        app:layout_constraintTop_toTopOf="@+id/mealChoiceItem" />
-
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mealChoiceSelectionRV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:scrollbars="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/mealChoiceItem"
-        app:layout_constraintBottom_toTopOf="@+id/totalPrice"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/totalPrice"
@@ -63,7 +17,7 @@
         app:layout_constraintBottom_toTopOf="@+id/addToCartButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mealChoiceSelectionRV" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/addToCartButton"
@@ -103,4 +57,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addToCartButton"
         app:layout_constraintTop_toBottomOf="@+id/totalPrice" />
+
 </android.support.constraint.ConstraintLayout>

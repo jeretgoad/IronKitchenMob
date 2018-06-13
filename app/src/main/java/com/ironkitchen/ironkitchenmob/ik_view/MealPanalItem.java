@@ -13,7 +13,7 @@ public class MealPanalItem extends Item<MealPanalViewHolder> implements Expandab
 
     private ExpandableGroup expandableGroup;
     private String panalTitle;
-    @DrawableRes private int expandableButtonIcon
+    @DrawableRes private int expandableButtonIcon;
     private View.OnClickListener onPanalClickListener;
 
     public MealPanalItem(String panalTitle, @DrawableRes int expandableButtonIcon,View.OnClickListener onPanalClickListener) {

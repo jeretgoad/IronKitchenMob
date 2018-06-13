@@ -4,24 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/mealPanal"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="4dp"
+    android:padding="4dp"
+    android:shadowDx="5"
+    android:shadowDy="5"
     android:background="#00ffffff">
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/mealPanal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#f1f1f1"
-        android:elevation="50dp"
-        android:padding="4dp"
-        android:shadowDx="5"
-        android:shadowDy="5"
-        app:layout_constraintBottom_toTopOf="@+id/mealPrepChoiceRecView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/textPanal"
@@ -44,20 +33,9 @@
             android:id="@+id/expandableButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_down"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/textPanal"/>
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mealPrepChoiceRecView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mealPanal" />
 
 </android.support.constraint.ConstraintLayout>
