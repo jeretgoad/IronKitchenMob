@@ -21,4 +21,5 @@
     <string name="title_bar_lunch_dayz">Mon.-Sat.</string>
     <string name="title_bar_lunch_time">11-4</string>
     <string name="title_bar_close">Closed</string>
+    <string name="total">Total:</string>
 </resources>

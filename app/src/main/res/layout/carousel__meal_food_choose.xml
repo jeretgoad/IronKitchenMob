@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="16dp"
+    android:background="@drawable/carousel_item_rounded_corner_bg"
+    android:layout_margin="8dp"
+    android:shadowColor="#fff"
+    android:shadowDx="5.0"
+    android:shadowDy="-5.0"
+    android:shadowRadius="10.0"
+
+    >
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/mealChoiceFoodImageConstraints"
+        android:layout_width="?android:attr/listPreferredItemHeightLarge"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:elevation="6dp"
+        android:padding="2dp"
+        android:foregroundGravity="center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/mealChoiceImageTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <ImageView
+            android:id="@+id/mealChoiceFoodImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/steak" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/mealChoiceImageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:elevation="3dp"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/mealChoiceFoodImageConstraints"
+        app:layout_constraintStart_toStartOf="@+id/mealChoiceFoodImageConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/mealChoiceFoodImageConstraints"
+        tools:text="Steak" />
+
+</android.support.constraint.ConstraintLayout>

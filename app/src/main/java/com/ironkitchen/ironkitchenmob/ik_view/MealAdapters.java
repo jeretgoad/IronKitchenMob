@@ -225,7 +225,7 @@ class InnerRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        View itemView = LayoutInflater.from(context).inflate(R.layout.meal_food_choose_header, parent, false);;
+        View itemView = LayoutInflater.from(context).inflate(R.layout.carousel__meal_food_choose, parent, false);;
         return new ThisPanalViewHolder(itemView);
     }
 
