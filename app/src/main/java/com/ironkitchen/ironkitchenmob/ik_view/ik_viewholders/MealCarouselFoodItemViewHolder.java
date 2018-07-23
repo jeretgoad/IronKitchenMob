@@ -1,4 +1,4 @@
-package com.ironkitchen.ironkitchenmob.ik_view;
+package com.ironkitchen.ironkitchenmob.ik_view.ik_viewholders;
 
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -8,11 +8,11 @@ import com.ironkitchen.ironkitchenmob.R;
 
 import com.xwray.groupie.ViewHolder;
 
-public class MealFoodHeaderViewHolder extends ViewHolder{
+public class MealCarouselFoodItemViewHolder extends ViewHolder{
 
     public final ImageView foodImage;
     public final TextView foodText;
-    public MealFoodHeaderViewHolder(@NonNull View rootView) {
+    public MealCarouselFoodItemViewHolder(@NonNull View rootView) {
         super(rootView);
         foodImage = (ImageView) rootView.findViewById(R.id.mealChoiceFoodImage);
         foodText = (TextView) rootView.findViewById(R.id.mealChoiceImageTitle);

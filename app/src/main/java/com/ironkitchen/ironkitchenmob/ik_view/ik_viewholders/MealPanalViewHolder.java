@@ -1,4 +1,4 @@
-package com.ironkitchen.ironkitchenmob.ik_view;
+package com.ironkitchen.ironkitchenmob.ik_view.ik_viewholders;
 import android.media.Image;
 import android.support.annotation.NonNull;
 import android.view.View;

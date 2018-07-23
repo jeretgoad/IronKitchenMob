@@ -1,9 +1,10 @@
-package com.ironkitchen.ironkitchenmob.ik_view;
+package com.ironkitchen.ironkitchenmob.ik_view.ik_view_items;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.view.View;
 
+import com.ironkitchen.ironkitchenmob.ik_view.ik_viewholders.MealPanalViewHolder;
 import com.xwray.groupie.ExpandableGroup;
 import com.xwray.groupie.ExpandableItem;
 import com.xwray.groupie.Item;

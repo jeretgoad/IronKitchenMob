@@ -1,23 +1,32 @@
-package com.ironkitchen.ironkitchenmob.ik_view;
+package com.ironkitchen.ironkitchenmob.ik_view.ik_view_items;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
-
+import android.support.annotation.ColorInt;
 import com.bumptech.glide.Glide;
 import com.ironkitchen.ironkitchenmob.R;
+import com.ironkitchen.ironkitchenmob.ik_view.ik_viewholders.MealCarouselFoodItemViewHolder;
 import com.xwray.groupie.Item;
 
-public class MealFoodCarouselItem extends Item<MealFoodHeaderViewHolder>{
+public class MealCarouselFoodItem extends Item<MealCarouselFoodItemViewHolder>{
     private String foodText;
     @DrawableRes private int foodImage;
+    @ColorInt private int colorInt;
 
-    public MealFoodCarouselItem(String foodText, @DrawableRes int foodImage){
+    public MealCarouselFoodItem(String foodText, @DrawableRes int foodImage){
         this.foodText = foodText;
         this.foodImage = foodImage;
     }
+
     @Override
-    public void bind(@NonNull MealFoodHeaderViewHolder viewHolder, int position) {
+    public int getLayout() {
+        return R.layout.carousel__meal_food_choose;
+    }
+
+    @Override
+    public void bind(@NonNull MealCarouselFoodItemViewHolder viewHolder, int position) {
         viewHolder.foodText.setText(foodText);
+        viewHolder.getRoot().setBackgroundColor(colorInt);
         if(foodText.length() < 11)
         {
             viewHolder.foodText.setTextSize(25);
@@ -41,8 +50,4 @@ public class MealFoodCarouselItem extends Item<MealFoodHeaderViewHolder>{
         Glide.with(viewHolder.getRoot().getContext()).load(foodImage).into(viewHolder.foodImage);
     }
 
-    @Override
-    public int getLayout() {
-        return R.layout.carousel__meal_food_choose;
-    }
 }
