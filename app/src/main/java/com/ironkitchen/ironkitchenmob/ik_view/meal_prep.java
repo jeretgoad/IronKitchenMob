@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.ironkitchen.ironkitchenmob.R;
 import com.ironkitchen.ironkitchenmob.ik_view.MealAdapters;
+import com.xwray.groupie.GroupAdapter;
 
 
 public class meal_prep extends Fragment {
@@ -18,6 +19,10 @@ public class meal_prep extends Fragment {
     private RecyclerView mealRV;
     private MealAdapters mealAdapters;
     private RecyclerView.Adapter outerRVAdapter;
+
+    private GroupAdapter mealGroupAdapter;
+    int mealGrey, mealBtwPadding;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
