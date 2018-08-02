@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name ="colorBackground">#ffffff</color>
     <color name ="colorSymbol">#11000000</color>
+    <color name ="colorCarouselBg">#dd1b1b1c</color>
+    <color name="colorCarouselFoodBG">#dedede</color>
 </resources>

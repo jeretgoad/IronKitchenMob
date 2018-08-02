@@ -4,19 +4,27 @@ import java.util.ArrayList;
 
 public class FoodItem {
     private String name;
-    private double total;
     private int image;
+    private ArrayList<FoodItemDetails> foodItemDetails;
+
 
     public FoodItem(String name, int image){
         this.name = name;
         this.image = image;
-        total = 0.00;
+        this.foodItemDetails = new ArrayList<>();
     }
 
 
-    public void setTotal(double total){
-        this.total = total;
+    public void addFoodItem(FoodItemDetails foodItem){
+        foodItemDetails.add(foodItem);
+    }
 
+    public ArrayList<FoodItemDetails> getFoodItems(){
+        return foodItemDetails;
+    }
+
+    public int getFoodSize(){
+        return foodItemDetails.size();
     }
 
     public String getName(){
@@ -27,7 +35,5 @@ public class FoodItem {
         return image;
     }
 
-    public double getTotal(){
-        return total;
-    }
+
 }

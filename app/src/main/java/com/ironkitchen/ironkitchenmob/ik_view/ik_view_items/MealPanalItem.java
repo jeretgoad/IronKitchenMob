@@ -23,6 +23,12 @@ public class MealPanalItem extends Item<MealPanalViewHolder> implements Expandab
         this.onPanalClickListener = onPanalClickListener;
     }
 
+    public MealPanalItem(String panalTitle) {
+        this.panalTitle = panalTitle;
+        this.expandableButtonIcon = 0;
+        this.onPanalClickListener = null;
+    }
+
     private @DrawableRes int getExpandableButtonIcon(){
         @DrawableRes  int expandableIcon = expandableGroup.isExpanded() ? R.drawable.ic_arrow_drop_up_black_24dp : R.drawable.ic_arrow_drop_down_black_24dp;
         return expandableIcon;
