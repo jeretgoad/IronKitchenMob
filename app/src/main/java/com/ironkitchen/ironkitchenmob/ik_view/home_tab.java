@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ironkitchen.ironkitchenmob.R;
+import com.ironkitchen.ironkitchenmob.ik_data.FakeDataSource;
+import com.ironkitchen.ironkitchenmob.ik_data.IKdataSourceInterface;
 import com.ironkitchen.ironkitchenmob.ik_data.MobTabObjects;
 
 import java.util.ArrayList;
@@ -31,6 +33,8 @@ public class home_tab extends Fragment {
     private GridLayoutManager mobGridLayout;
     private RecyclerView.Adapter mobAdapter;
     private ArrayList<MobTabObjects> mobObjects;
+    private FakeDataSource fds;
+    private IKdataSourceInterface ik_dsi;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,17 +67,10 @@ public class home_tab extends Fragment {
     public ArrayList<MobTabObjects> getMobList()
     {
         ArrayList<MobTabObjects> mobObjects = new ArrayList<>();
+        for(int i = 0; i < 4; i++){
+            mobObjects.add(ik_dsi.createNewMobTabObjects(i));
+        }
 
-        MobTabObjects doubleView = new MobTabObjects(R.drawable.ik_loc, R.raw.ik_intro, 2);
-        mobObjects.add(doubleView);
-        MobTabObjects frigLoc = new MobTabObjects(R.drawable.frig_loc, 1);
-        mobObjects.add(frigLoc);
-        MobTabObjects mealPrep = new MobTabObjects("Meal Prep",  R.drawable.broc_chic, 0);
-        mobObjects.add(mealPrep);
-        MobTabObjects familyPrep = new MobTabObjects("Family Prep", R.drawable.cbr_trey, 0);
-        mobObjects.add(familyPrep);
-        MobTabObjects lunch = new MobTabObjects("Lunch", R.drawable.lunch_button, 0);
-        mobObjects.add(lunch);
 
         return mobObjects;
     }
