@@ -1,5 +1,6 @@
 package com.ironkitchen.ironkitchenmob.ik_data.ik_view_items;
 
+import android.graphics.drawable.Animatable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -14,19 +15,9 @@ public class MealPanalItem extends Item<MealPanalViewHolder> implements Expandab
 
     private ExpandableGroup expandableGroup;
     private String panalTitle;
-    @DrawableRes private int expandableButtonIcon;
-    private View.OnClickListener onPanalClickListener;
-
-    public MealPanalItem(String panalTitle, @DrawableRes int expandableButtonIcon,View.OnClickListener onPanalClickListener) {
-        this.panalTitle = panalTitle;
-        this.expandableButtonIcon = expandableButtonIcon;
-        this.onPanalClickListener = onPanalClickListener;
-    }
 
     public MealPanalItem(String panalTitle) {
         this.panalTitle = panalTitle;
-        this.expandableButtonIcon = 0;
-        this.onPanalClickListener = null;
     }
 
     public String getPanalTitle(){
@@ -51,10 +42,23 @@ public class MealPanalItem extends Item<MealPanalViewHolder> implements Expandab
 
 
     @Override
-    public void bind(@NonNull MealPanalViewHolder viewHolder, int position) {
+    public void bind(final MealPanalViewHolder viewHolder, int position) {
         viewHolder.textPanal.setText(panalTitle);
-        viewHolder.expandableIcon.setImageResource(getExpandableButtonIcon());
-        viewHolder.expandableIcon.setOnClickListener(onPanalClickListener);
+        viewHolder.expandableIcon.setImageResource(expandableGroup.isExpanded() ? R.drawable.ic_arrow_drop_up_black_24dp : R.drawable.ic_arrow_drop_down_black_24dp);
+        viewHolder.expandableIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                expandableGroup.onToggleExpanded();
+                bindIcon(viewHolder);
+            }
+        });
+    }
+
+    private void bindIcon(MealPanalViewHolder viewHolder){
+        viewHolder.expandableIcon.setVisibility(View.VISIBLE);
+        viewHolder.expandableIcon.setImageResource(expandableGroup.isExpanded() ? R.drawable.ic_arrow_drop_up_black_24dp : R.drawable.ic_arrow_drop_down_black_24dp);
+        Animatable drawable = (Animatable) viewHolder.expandableIcon.getDrawable();
+        drawable.start();
     }
 
     @Override
