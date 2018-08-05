@@ -1,4 +1,4 @@
-package com.ironkitchen.ironkitchenmob.ik_view.ik_view_items;
+package com.ironkitchen.ironkitchenmob.ik_data.ik_view_items;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;

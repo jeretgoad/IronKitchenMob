@@ -1,23 +1,39 @@
-package com.ironkitchen.ironkitchenmob.ik_view.ik_view_items;
+package com.ironkitchen.ironkitchenmob.ik_data.ik_view_items;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.ColorInt;
 import com.bumptech.glide.Glide;
 import com.ironkitchen.ironkitchenmob.R;
+import com.ironkitchen.ironkitchenmob.ik_data.FoodItemDetails;
 import com.ironkitchen.ironkitchenmob.ik_view.ik_viewholders.MealCarouselFoodItemViewHolder;
 import com.xwray.groupie.Item;
+
+import java.util.ArrayList;
 
 public class MealCarouselFoodItem extends Item<MealCarouselFoodItemViewHolder>{
     private String foodText;
     @DrawableRes private int foodImage;
     @ColorInt private int colorInt;
+    ArrayList<FoodItemDetails> foodItemDetails;
 
     public MealCarouselFoodItem(String foodText, @DrawableRes int foodImage){
         this.foodText = foodText;
         this.foodImage = foodImage;
+        this.foodItemDetails = new ArrayList<>();
     }
 
+    public void addFoodItemDetail(FoodItemDetails foodItemDetail){
+        foodItemDetails.add(foodItemDetail);
+    }
+
+    public String getFoodText(){
+        return foodText;
+    }
+
+    public ArrayList<FoodItemDetails> getFoodItemDetails(){
+        return foodItemDetails;
+    }
     @Override
     public int getLayout() {
         return R.layout.carousel__meal_food_choose;

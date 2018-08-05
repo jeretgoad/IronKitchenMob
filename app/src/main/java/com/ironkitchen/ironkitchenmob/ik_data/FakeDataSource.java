@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import com.ironkitchen.ironkitchenmob.R;
+import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealCarouselFoodItem;
+import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealPanalItem;
 
 
 public class FakeDataSource extends Object implements IKdataSourceInterface{
@@ -223,45 +225,43 @@ public class FakeDataSource extends Object implements IKdataSourceInterface{
     }
 
     @Override
-    public List<FoodPanel> getListOfFoodPanelData() {
-        ArrayList<FoodPanel> foodPanels = new ArrayList<>();
+    public List<MealPanalItem> getListOfFoodPanelData() {
+        ArrayList<MealPanalItem> foodPanels = new ArrayList<>();
         for(int i = 0; i < food_panel.length; i++){
-            FoodPanel foodPanel = createNewFoodPanel(i);
+            MealPanalItem foodPanel = createNewFoodPanel(i);
             foodPanels.add(foodPanel);
         }
         return foodPanels;
     }
 
     @Override
-    public List<FoodItem> getListOfFoodItem(String key) {
-        ArrayList<FoodItem> foodItems = new ArrayList<>();
+    public List<MealCarouselFoodItem> getListOfFoodItem(String key) {
+        ArrayList<MealCarouselFoodItem> CarouselFoodItems = new ArrayList<>();
         ArrayList<Pair<String, Integer>> foodItemsSet = getFoodGroup(key);
         if(!foodItemsSet.isEmpty()){
             for(int i = 0; i < foodItemsSet.size(); i++){
                 String foodName = foodItemsSet.get(i).first;
                 int foodImage = foodItemsSet.get(i).second;
-                FoodItem foodItem = createNewFoodItem(foodName, foodImage);
-                foodItems.add(foodItem);
+                MealCarouselFoodItem foodItem = createNewFoodItem(foodName, foodImage);
+                CarouselFoodItems.add(foodItem);
             }
         }
 
-        return foodItems;
+        return CarouselFoodItems;
     }
 
     @Override
-    public List<FoodItemDetails> getListOfFoodItemDetailsData(FoodItem key) {
-        String keyName = key.getName();
-        ArrayList<FoodItemDetails> foodItemDetails = new ArrayList<>();
+    public void getListOfFoodItemDetailsData(MealCarouselFoodItem key) {
+        String keyName = key.getFoodText();
         ArrayList<Pair<String, Double>> foodItemDetailsSet = getFoodDetails(keyName);
         if(!foodItemDetailsSet.isEmpty()){
             for(int i = 0; i < foodItemDetailsSet.size(); i++){
                 String label = foodItemDetailsSet.get(i).first;
                 Double price = foodItemDetailsSet.get(i).second;
                 FoodItemDetails thisFoodItemDetails = createNewFoodItemDetails(label, price);
-                foodItemDetails.add(thisFoodItemDetails);
+                key.addFoodItemDetail(thisFoodItemDetails);
             }
         }
-        return foodItemDetails;
     }
 
     @Override
@@ -276,14 +276,14 @@ public class FakeDataSource extends Object implements IKdataSourceInterface{
     }
 
     @Override
-    public FoodPanel createNewFoodPanel(int index) {
-        FoodPanel foodPanel = new FoodPanel(food_panel[index]);
+    public MealPanalItem createNewFoodPanel(int index) {
+        MealPanalItem foodPanel = new MealPanalItem(food_panel[index]);
         return foodPanel;
     }
 
     @Override
-    public FoodItem createNewFoodItem(String name, int imageRes) {
-        FoodItem foodItem = new FoodItem(name, imageRes);
+    public MealCarouselFoodItem createNewFoodItem(String name, int imageRes) {
+        MealCarouselFoodItem foodItem = new MealCarouselFoodItem(name, imageRes);
         return foodItem;
     }
 
