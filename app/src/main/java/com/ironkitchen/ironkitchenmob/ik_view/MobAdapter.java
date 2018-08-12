@@ -19,6 +19,10 @@ import com.ironkitchen.ironkitchenmob.ik_data.MobTabObjects;
 
 import java.util.ArrayList;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
+
 /**
  * Created by jeretgoad on 1/25/18.
  */
@@ -72,11 +76,11 @@ class MobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemViewType(int position)
     {
-        if(mobObjects.get(position).isButton == 0)
+        if(mobObjects.get(position).getIsButton() == 0)
         {
             return image_button;
         }
-        else if(mobObjects.get(position).isButton == 1)
+        else if(mobObjects.get(position).getIsButton() == 1)
         {
             return image_view;
         }
@@ -119,23 +123,27 @@ class MobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             {
                 CustomViewHolderButton viewHolder = (CustomViewHolderButton) holder;
                 viewHolder.setIsRecyclable(false);
-                Glide.with(context).load(mobObjects.get(position).imageID).into(viewHolder.imageView);
+                Glide.with(context).
+                        load(mobObjects.get(position).getImageID())
+                        .apply(bitmapTransform(new RoundedCornersTransformation(45, 0,
+                                RoundedCornersTransformation.CornerType.BOTTOM)))
+                        .into(viewHolder.imageView);
                 viewHolder.textView1.setPaintFlags(viewHolder.textView1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-                viewHolder.textView1.setText(mobObjects.get(position).mealType);
+                viewHolder.textView1.setText(mobObjects.get(position).getMealType());
             }
             break;
             case image_view:
             {
                 CustomViewHolderImage viewHolder = (CustomViewHolderImage) holder;
                 viewHolder.setIsRecyclable(false);
-                Glide.with(context).load(mobObjects.get(position).imageID).into(viewHolder.imageView);
+                Glide.with(context).load(mobObjects.get(position).getImageID()).into(viewHolder.imageView);
             }
             break;
             case image_double:
             {
                 CustomViewHolderImageVideo viewHolder = (CustomViewHolderImageVideo) holder;
                 viewHolder.setIsRecyclable(false);
-                Glide.with(context).load(mobObjects.get(position).imageID).into(viewHolder.imageView);
+                Glide.with(context).load(mobObjects.get(position).getImageID()).into(viewHolder.imageView);
                 VideoView video = viewHolder.videoView;
                 MediaController media = new MediaController(this.context);
                 String videoPath = "android.resource://com.ironkitchen.ironkitchenmob/"+R.raw.ik_intro;

@@ -44,7 +44,7 @@ public class HomeTabActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_tab);
         imageList = (ArrayList<Integer>) ik_dsi.getSlideShow();
-        viewAdapter = (AdapterViewFlipper)findViewById(R.id.viewFlipper);
+        viewAdapter = findViewById(R.id.viewFlipper);
         FlipperAdapter adapter = new FlipperAdapter(getApplicationContext(), imageList);
         viewAdapter.setAdapter(adapter);
         viewAdapter.setAutoStart(true);
@@ -56,34 +56,20 @@ public class HomeTabActivity extends AppCompatActivity{
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), fraggyList);
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
-    /*public ArrayList<Integer> getImagesList()
-    {
-        ArrayList<Integer> images = new ArrayList<Integer>();
-        images.add(R.drawable.burritoes);
-        images.add(R.drawable.col2);
-        images.add(R.drawable.col3);
-        images.add(R.drawable.for_home);
-        images.add(R.drawable.keto_bowls_5);
-        images.add(R.drawable.pickup);
-        images.add(R.drawable.back_again);
-        images.add(R.drawable.broc_chic);
-        images.add(R.drawable.col_wid_sauce);
-        images.add(R.drawable.frig);
-        return images;
-    }*/
+
 
     public List<Fragment> getFragmentsList()
     {
-        List<Fragment> fragments = new Vector<Fragment>();
+        List<Fragment> fragments = new Vector<>();
         fragments.add(new home_tab());
         fragments.add(new meal_prep());
         fragments.add(new family_prep());

@@ -27,7 +27,6 @@ import java.util.List;
 public class meal_prep extends Fragment {
     private View mealView;
     private RecyclerView mealRV;
-    private MealAdapters mealAdapters;
     private RecyclerView.Adapter outerRVAdapter;
     private GridLayoutManager layoutManager;
     private GroupAdapter mealGroupAdapter;
