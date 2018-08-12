@@ -5,23 +5,23 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import com.ironkitchen.ironkitchenmob.ik_view.ik_viewholders.MealPanalViewHolder;
+import com.ironkitchen.ironkitchenmob.ik_view.ik_viewholders.MealPanelViewHolder;
 import com.xwray.groupie.ExpandableGroup;
 import com.xwray.groupie.ExpandableItem;
 import com.xwray.groupie.Item;
 import com.ironkitchen.ironkitchenmob.R;
 
-public class MealPanalItem extends Item<MealPanalViewHolder> implements ExpandableItem{
+public class MealPanelItem extends Item<MealPanelViewHolder> implements ExpandableItem{
 
     private ExpandableGroup expandableGroup;
-    private String panalTitle;
+    private String panelTitle;
 
-    public MealPanalItem(String panalTitle) {
-        this.panalTitle = panalTitle;
+    public MealPanelItem(String panalTitle) {
+        this.panelTitle = panalTitle;
     }
 
-    public String getPanalTitle(){
-        return panalTitle;
+    public String getPanelTitle(){
+        return panelTitle;
     }
 
     private @DrawableRes int getExpandableButtonIcon(){
@@ -32,18 +32,18 @@ public class MealPanalItem extends Item<MealPanalViewHolder> implements Expandab
 
     @Override
     public int getLayout() {
-        return R.layout.meal_food_panal;
+        return R.layout.meal_food_panel;
     }
 
     @Override
-    public MealPanalViewHolder createViewHolder(View panalView) {
-        return new MealPanalViewHolder(panalView);
+    public MealPanelViewHolder createViewHolder(View panelView) {
+        return new MealPanelViewHolder(panelView);
     }
 
 
     @Override
-    public void bind(final MealPanalViewHolder viewHolder, int position) {
-        viewHolder.textPanal.setText(panalTitle);
+    public void bind(final MealPanelViewHolder viewHolder, int position) {
+        viewHolder.textPanel.setText(panelTitle);
         viewHolder.expandableIcon.setImageResource(expandableGroup.isExpanded() ? R.drawable.ic_arrow_drop_up_black_24dp : R.drawable.ic_arrow_drop_down_black_24dp);
         viewHolder.expandableIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +54,7 @@ public class MealPanalItem extends Item<MealPanalViewHolder> implements Expandab
         });
     }
 
-    private void bindIcon(MealPanalViewHolder viewHolder){
+    private void bindIcon(MealPanelViewHolder viewHolder){
         viewHolder.expandableIcon.setVisibility(View.VISIBLE);
         viewHolder.expandableIcon.setImageResource(expandableGroup.isExpanded() ? R.drawable.ic_arrow_drop_up_black_24dp : R.drawable.ic_arrow_drop_down_black_24dp);
         Animatable drawable = (Animatable) viewHolder.expandableIcon.getDrawable();

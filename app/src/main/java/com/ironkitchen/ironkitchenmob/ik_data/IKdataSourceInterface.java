@@ -1,9 +1,8 @@
 package com.ironkitchen.ironkitchenmob.ik_data;
 
 import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealCarouselFoodItem;
-import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealPanalItem;
+import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealPanelItem;
 
-import java.util.HashMap;
 import java.util.List;
 
 public interface IKdataSourceInterface {
@@ -11,7 +10,7 @@ public interface IKdataSourceInterface {
 
     List<MobTabObjects> getListOfMobTabData();
 
-    List<MealPanalItem> getListOfFoodPanelData();
+    List<MealPanelItem> getListOfFoodPanelData();
 
     List<MealCarouselFoodItem> getListOfFoodItem(String key);
 
@@ -19,7 +18,7 @@ public interface IKdataSourceInterface {
 
     MobTabObjects createNewMobTabObjects(int index);
 
-    MealPanalItem createNewFoodPanel(int index);
+    MealPanelItem createNewFoodPanel(int index);
 
     MealCarouselFoodItem createNewFoodItem(String name, int imageRes);
 

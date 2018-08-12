@@ -10,13 +10,13 @@ import com.xwray.groupie.ExpandableGroup;
 import com.xwray.groupie.ExpandableItem;
 import com.xwray.groupie.ViewHolder;
 
-public class MealPanalViewHolder extends ViewHolder{
-    public final TextView textPanal;
+public class MealPanelViewHolder extends ViewHolder{
+    public final TextView textPanel;
     public final ImageButton expandableIcon;
 
-    public MealPanalViewHolder(@NonNull View rootView) {
+    public MealPanelViewHolder(@NonNull View rootView) {
         super(rootView);
-        textPanal = (TextView) rootView.findViewById(R.id.textPanal);
+        textPanel = (TextView) rootView.findViewById(R.id.textPanel);
         expandableIcon = (ImageButton) rootView.findViewById(R.id.expandableButton);
     }
 }

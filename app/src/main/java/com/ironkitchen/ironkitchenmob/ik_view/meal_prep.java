@@ -16,14 +16,12 @@ import com.ironkitchen.ironkitchenmob.ik_data.FakeDataSource;
 import com.ironkitchen.ironkitchenmob.ik_data.IKdataSourceInterface;
 import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealCarouselFoodItem;
 import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealCarouselItem;
-import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealPanalItem;
+import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealPanelItem;
 import com.ironkitchen.ironkitchenmob.ik_view.decorations.MealCarouselItemDecoration;
 import com.xwray.groupie.ExpandableGroup;
-import com.xwray.groupie.Group;
 import com.xwray.groupie.GroupAdapter;
 import com.xwray.groupie.Section;
 import java.util.List;
-import java.util.ArrayList;
 
 
 public class meal_prep extends Fragment {
@@ -57,16 +55,16 @@ public class meal_prep extends Fragment {
     }
 
     private void populateAdapter(){
-        List<MealPanalItem> panalItems = dsi.getListOfFoodPanelData();
-        for(int i = 0; i < panalItems.size(); i++){
-            ExpandableGroup expandableGroup = new ExpandableGroup(panalItems.get(i));
-            populateExpandableGroup(expandableGroup, panalItems.get(i).getPanalTitle());
+        List<MealPanelItem> panelItems = dsi.getListOfFoodPanelData();
+        for(int i = 0; i < panelItems.size(); i++){
+            ExpandableGroup expandableGroup = new ExpandableGroup(panelItems.get(i));
+            populateExpandableGroup(expandableGroup, panelItems.get(i).getPanelTitle());
             mealGroupAdapter.add(expandableGroup);
         }
     }
 
-    private void populateExpandableGroup(ExpandableGroup expandableGroup, String panalTitle){
-        List<MealCarouselFoodItem> foodItems = dsi.getListOfFoodItem(panalTitle);
+    private void populateExpandableGroup(ExpandableGroup expandableGroup, String panelTitle){
+        List<MealCarouselFoodItem> foodItems = dsi.getListOfFoodItem(panelTitle);
         Section carouselSection = new Section();
 
         // retrieve food item details for each food item
@@ -76,7 +74,7 @@ public class meal_prep extends Fragment {
         }
         MealCarouselItem carouselItem = populateCarousel(foodItems);
         carouselSection.add(carouselItem);
-        mealGroupAdapter.add(carouselSection);
+        expandableGroup.add(carouselSection);
     }
 
     private MealCarouselItem populateCarousel(List<MealCarouselFoodItem> foodItems){

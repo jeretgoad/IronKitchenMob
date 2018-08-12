@@ -3,15 +3,15 @@ package com.ironkitchen.ironkitchenmob.ik_data;
 import android.util.Pair;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import com.ironkitchen.ironkitchenmob.R;
 import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealCarouselFoodItem;
-import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealPanalItem;
+import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealPanelItem;
 
 
 public class FakeDataSource extends Object implements IKdataSourceInterface{
 
+    final private int MOB_TAB_BUTTON_TOTAL = 5;
     // home tab data
     private final int[] app_bar_slide_show_images = {
             R.drawable.burritoes,
@@ -220,15 +220,23 @@ public class FakeDataSource extends Object implements IKdataSourceInterface{
     @Override
     public List<MobTabObjects> getListOfMobTabData() {
         ArrayList<MobTabObjects> mobTabObjects = new ArrayList<>();
-
-        return null;
+        for(int i = 0; i < MOB_TAB_BUTTON_TOTAL; i++)
+        {
+            String title = home_item_titles[i];
+            int image = home_item_images[i];
+            int video = home_item_video[i];
+            int button = home_item_button_type[i];
+            MobTabObjects mobButton = new MobTabObjects(title, image, video, button);
+            mobTabObjects.add(mobButton);
+        }
+        return mobTabObjects;
     }
 
     @Override
-    public List<MealPanalItem> getListOfFoodPanelData() {
-        ArrayList<MealPanalItem> foodPanels = new ArrayList<>();
+    public List<MealPanelItem> getListOfFoodPanelData() {
+        ArrayList<MealPanelItem> foodPanels = new ArrayList<>();
         for(int i = 0; i < food_panel.length; i++){
-            MealPanalItem foodPanel = createNewFoodPanel(i);
+            MealPanelItem foodPanel = createNewFoodPanel(i);
             foodPanels.add(foodPanel);
         }
         return foodPanels;
@@ -276,8 +284,8 @@ public class FakeDataSource extends Object implements IKdataSourceInterface{
     }
 
     @Override
-    public MealPanalItem createNewFoodPanel(int index) {
-        MealPanalItem foodPanel = new MealPanalItem(food_panel[index]);
+    public MealPanelItem createNewFoodPanel(int index) {
+        MealPanelItem foodPanel = new MealPanelItem(food_panel[index]);
         return foodPanel;
     }
 
