@@ -56,7 +56,7 @@ public class MealPanelItem extends Item<MealPanelViewHolder> implements Expandab
 
     private void bindIcon(MealPanelViewHolder viewHolder){
         viewHolder.expandableIcon.setVisibility(View.VISIBLE);
-        viewHolder.expandableIcon.setImageResource(expandableGroup.isExpanded() ? R.drawable.ic_arrow_drop_up_black_24dp : R.drawable.ic_arrow_drop_down_black_24dp);
+        viewHolder.expandableIcon.setImageResource(expandableGroup.isExpanded() ? R.drawable.collapse_anim: R.drawable.expand_anim);
         Animatable drawable = (Animatable) viewHolder.expandableIcon.getDrawable();
         drawable.start();
     }

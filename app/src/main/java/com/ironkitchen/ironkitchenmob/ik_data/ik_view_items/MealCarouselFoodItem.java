@@ -3,6 +3,8 @@ package com.ironkitchen.ironkitchenmob.ik_data.ik_view_items;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.ColorInt;
+import android.view.View;
+
 import com.bumptech.glide.Glide;
 import com.ironkitchen.ironkitchenmob.R;
 import com.ironkitchen.ironkitchenmob.ik_data.FoodItemDetails;
@@ -34,9 +36,15 @@ public class MealCarouselFoodItem extends Item<MealCarouselFoodItemViewHolder>{
     public ArrayList<FoodItemDetails> getFoodItemDetails(){
         return foodItemDetails;
     }
+
     @Override
     public int getLayout() {
         return R.layout.carousel__meal_food_choose;
+    }
+
+    @Override
+    public MealCarouselFoodItemViewHolder createViewHolder(View itemView){
+        return new MealCarouselFoodItemViewHolder(itemView);
     }
 
     @Override

@@ -31,7 +31,7 @@ public class meal_prep extends Fragment {
     private GridLayoutManager layoutManager;
     private GroupAdapter mealGroupAdapter;
     private int mealCarouselColor, mealBtwPadding;
-    private IKdataSourceInterface dsi;
+    private IKdataSourceInterface ik_dsi;
 
 
 
@@ -40,8 +40,8 @@ public class meal_prep extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mealView = inflater.inflate(R.layout.fragment_meal_prep, container, false);
-        mealRV  = (RecyclerView) mealView.findViewById(R.id.mealRecView);
-        dsi = new FakeDataSource();
+        mealRV  = mealView.findViewById(R.id.mealRecView);
+        ik_dsi = new FakeDataSource();
         mealCarouselColor = ContextCompat.getColor(getContext(), R.color.colorCarouselBg);
         mealBtwPadding = getResources().getDimensionPixelSize(R.dimen.padding_carousel);
 
@@ -49,12 +49,15 @@ public class meal_prep extends Fragment {
 
         populateAdapter();
 
-
+        layoutManager = new GridLayoutManager(getActivity(), mealGroupAdapter.getSpanCount());
+        layoutManager.setSpanSizeLookup(mealGroupAdapter.getSpanSizeLookup());
+        mealRV.setLayoutManager(layoutManager);
+        mealRV.setAdapter(mealGroupAdapter);
         return mealView;
     }
 
     private void populateAdapter(){
-        List<MealPanelItem> panelItems = dsi.getListOfFoodPanelData();
+        List<MealPanelItem> panelItems = ik_dsi.getListOfFoodPanelData();
         for(int i = 0; i < panelItems.size(); i++){
             ExpandableGroup expandableGroup = new ExpandableGroup(panelItems.get(i));
             populateExpandableGroup(expandableGroup, panelItems.get(i).getPanelTitle());
@@ -63,13 +66,13 @@ public class meal_prep extends Fragment {
     }
 
     private void populateExpandableGroup(ExpandableGroup expandableGroup, String panelTitle){
-        List<MealCarouselFoodItem> foodItems = dsi.getListOfFoodItem(panelTitle);
+        List<MealCarouselFoodItem> foodItems = ik_dsi.getListOfFoodItem(panelTitle);
         Section carouselSection = new Section();
 
         // retrieve food item details for each food item
         for (int i = 0; i < foodItems.size(); i++){
             MealCarouselFoodItem foodItem = foodItems.get(i);
-            dsi.getListOfFoodItemDetailsData(foodItem);
+            ik_dsi.getListOfFoodItemDetailsData(foodItem);
         }
         MealCarouselItem carouselItem = populateCarousel(foodItems);
         carouselSection.add(carouselItem);

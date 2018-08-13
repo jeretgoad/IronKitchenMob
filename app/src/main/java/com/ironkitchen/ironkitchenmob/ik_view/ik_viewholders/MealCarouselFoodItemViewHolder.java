@@ -14,7 +14,7 @@ public class MealCarouselFoodItemViewHolder extends ViewHolder{
     public final TextView foodText;
     public MealCarouselFoodItemViewHolder(@NonNull View rootView) {
         super(rootView);
-        foodImage = (ImageView) rootView.findViewById(R.id.mealChoiceFoodImage);
-        foodText = (TextView) rootView.findViewById(R.id.mealChoiceImageTitle);
+        foodImage = rootView.findViewById(R.id.mealChoiceFoodImage);
+        foodText = rootView.findViewById(R.id.mealChoiceImageTitle);
     }
 }

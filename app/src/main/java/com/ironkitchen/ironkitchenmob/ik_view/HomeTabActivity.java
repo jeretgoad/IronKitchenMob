@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.widget.AdapterViewFlipper;
 
 import com.ironkitchen.ironkitchenmob.R;
+import com.ironkitchen.ironkitchenmob.ik_data.FakeDataSource;
 import com.ironkitchen.ironkitchenmob.ik_data.IKdataSourceInterface;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class HomeTabActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_tab);
+        ik_dsi = new FakeDataSource();
         imageList = (ArrayList<Integer>) ik_dsi.getSlideShow();
         viewAdapter = findViewById(R.id.viewFlipper);
         FlipperAdapter adapter = new FlipperAdapter(getApplicationContext(), imageList);

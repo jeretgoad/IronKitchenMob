@@ -44,8 +44,11 @@ public class home_tab extends Fragment {
         recyclerView.setHasFixedSize(true);
         mobGridLayout = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mobGridLayout);
+
+        ik_dsi = new FakeDataSource();
         mobObjects = getMobList();
         mobAdapter = new MobAdapter(getActivity(), mobObjects);
+
         recyclerView.setAdapter(mobAdapter);
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new RecyclerTouchListener.OnItemClickListener() {
           @Override
