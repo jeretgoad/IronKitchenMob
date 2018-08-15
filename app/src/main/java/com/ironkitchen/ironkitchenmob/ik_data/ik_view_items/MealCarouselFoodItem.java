@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class MealCarouselFoodItem extends Item<MealCarouselFoodItemViewHolder>{
     private String foodText;
     @DrawableRes private int foodImage;
-    @ColorInt private int colorInt;
     ArrayList<FoodItemDetails> foodItemDetails;
 
     public MealCarouselFoodItem(String foodText, @DrawableRes int foodImage){
@@ -50,22 +49,21 @@ public class MealCarouselFoodItem extends Item<MealCarouselFoodItemViewHolder>{
     @Override
     public void bind(@NonNull MealCarouselFoodItemViewHolder viewHolder, int position) {
         viewHolder.foodText.setText(foodText);
-        viewHolder.getRoot().setBackgroundColor(colorInt);
         if(foodText.length() < 11)
         {
-            viewHolder.foodText.setTextSize(25);
+            viewHolder.foodText.setTextSize(20);
         }
         else if(foodText.length()  >= 11 && foodText.length()  < 15)
         {
-            viewHolder.foodText.setTextSize(24);
+            viewHolder.foodText.setTextSize(19);
         }
         else if(foodText.length()  >= 15 && foodText.length()  < 20)
         {
-            viewHolder.foodText.setTextSize(22);
+            viewHolder.foodText.setTextSize(17);
         }
         else if(foodText.length()  >= 20 && foodText.length()  <22)
         {
-            viewHolder.foodText.setTextSize(20);
+            viewHolder.foodText.setTextSize(15);
         }
         else
         {

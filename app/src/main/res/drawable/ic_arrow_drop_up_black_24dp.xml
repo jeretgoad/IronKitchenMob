@@ -7,6 +7,11 @@
         <path
             android:name="expandableIcon"
             android:fillColor="#FF000000"
-            android:pathData="M7,14l5,-5 5,5z"/>
+            android:pathData="M12,22A10,10 0 0,1 2,12A10,
+        10 0 0,1 12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22
+        M17,14
+        L12,9
+        L7,14
+        Z" />/>
     </group>
 </vector>
