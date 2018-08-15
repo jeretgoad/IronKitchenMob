@@ -7,4 +7,9 @@
     <color name ="colorSymbol">#11000000</color>
     <color name ="colorCarouselBg">#dd1b1b1c</color>
     <color name="colorCarouselFoodBG">#dedede</color>
+    <color name="colorMealPanelCollapse">#77eae0e0</color>
+    <color name="colorMealPanelExpand">#77151f1f</color>
+    <color name="colorMealPanelTextShadowCollapse">#7B7C87</color>
+    <color name="colorMealPanelTextShadowExpand">#848378</color>
+
 </resources>

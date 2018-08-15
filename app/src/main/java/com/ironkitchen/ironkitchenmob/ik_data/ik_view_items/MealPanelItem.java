@@ -9,9 +9,10 @@ import com.ironkitchen.ironkitchenmob.ik_view.ik_viewholders.MealPanelViewHolder
 import com.xwray.groupie.ExpandableGroup;
 import com.xwray.groupie.ExpandableItem;
 import com.xwray.groupie.Item;
+import com.xwray.groupie.OnItemClickListener;
 import com.ironkitchen.ironkitchenmob.R;
 
-public class MealPanelItem extends Item<MealPanelViewHolder> implements ExpandableItem{
+public class MealPanelItem extends Item<MealPanelViewHolder> implements ExpandableItem, OnItemClickListener{
 
     private ExpandableGroup expandableGroup;
     private String panelTitle;
@@ -45,7 +46,7 @@ public class MealPanelItem extends Item<MealPanelViewHolder> implements Expandab
     public void bind(final MealPanelViewHolder viewHolder, int position) {
         viewHolder.textPanel.setText(panelTitle);
         viewHolder.expandableIcon.setImageResource(expandableGroup.isExpanded() ? R.drawable.ic_arrow_drop_up_black_24dp : R.drawable.ic_arrow_drop_down_black_24dp);
-        viewHolder.expandableIcon.setOnClickListener(new View.OnClickListener() {
+        viewHolder.rootPanel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 expandableGroup.onToggleExpanded();
@@ -64,6 +65,11 @@ public class MealPanelItem extends Item<MealPanelViewHolder> implements Expandab
     @Override
     public void setExpandableGroup(@NonNull ExpandableGroup onToggleListener) {
         this.expandableGroup = onToggleListener;
+
+    }
+
+    @Override
+    public void onItemClick(@NonNull Item item, @NonNull View view) {
 
     }
 }

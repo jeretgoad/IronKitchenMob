@@ -5,20 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/mealPanal"
+    android:id="@+id/mealPanel"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="4dp"
     android:padding="4dp"
     android:shadowDx="5"
     android:shadowDy="5"
-    android:background="#77eae0e0"
+    android:background="@color/colorMealPanelCollapse"
     android:clickable="true">
 
     <TextView
         android:id="@+id/textPanel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:shadowColor="#7B7C87"
+        android:shadowColor="@color/colorMealPanelTextShadowCollapse"
         android:shadowDx="5"
         android:shadowDy="5"
         android:shadowRadius="10"
@@ -32,8 +32,8 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Protein By the pound"/>
 
-    <ImageButton
-        android:id="@+id/expandableButton"
+    <Image
+        android:id="@+id/expandableIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
