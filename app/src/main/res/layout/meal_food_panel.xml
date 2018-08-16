@@ -26,11 +26,11 @@
         android:textColor="#000"
         android:textSize="32sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/expandableIcon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Protein By the pound"/>
+        tools:text="Protein By the pound" />
 
     <Image
         android:id="@+id/expandableIcon"
@@ -39,8 +39,8 @@
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/textPanel"
-        app:layout_constraintStart_toStartOf="@id/textPanel"
-        app:layout_constraintTop_toBottomOf="@id/textPanel"
+        app:layout_constraintStart_toStartOf="@+id/textPanel"
+        app:layout_constraintTop_toBottomOf="@+id/textPanel"
         app:layout_constraintVertical_bias="1.0"
         tools:background="@drawable/ic_arrow_drop_down_black_24dp"/>
 

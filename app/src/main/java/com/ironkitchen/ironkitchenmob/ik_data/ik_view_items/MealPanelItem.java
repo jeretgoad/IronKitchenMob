@@ -56,8 +56,14 @@ public class MealPanelItem extends Item<MealPanelViewHolder> implements Expandab
     }
 
     private void bindIcon(MealPanelViewHolder viewHolder){
+        int panelColorExpanded = viewHolder.rootPanel.getResources().getColor(R.color.colorMealPanelExpand);
+        int textColorExpanded = viewHolder.textPanel.getResources().getColor(R.color.colorMealPanelTextShadowExpand);
+        int panelColorCollapsed = viewHolder.rootPanel.getResources().getColor(R.color.colorMealPanelCollapse);
+        int textColorCollapsed = viewHolder.textPanel.getResources().getColor(R.color.colorMealPanelTextShadowCollapse);
         viewHolder.expandableIcon.setVisibility(View.VISIBLE);
         viewHolder.expandableIcon.setImageResource(expandableGroup.isExpanded() ? R.drawable.collapse_anim: R.drawable.expand_anim);
+        viewHolder.rootPanel.setBackgroundColor(expandableGroup.isExpanded() ? panelColorExpanded: panelColorCollapsed);
+        viewHolder.textPanel.setTextColor(expandableGroup.isExpanded() ? textColorExpanded: textColorCollapsed);
         Animatable drawable = (Animatable) viewHolder.expandableIcon.getDrawable();
         drawable.start();
     }
