@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.content.Context;
 import com.bumptech.glide.Glide;
 import com.ironkitchen.ironkitchenmob.R;
+import com.ironkitchen.ironkitchenmob.ik_view.GlideApp;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public class FlipperAdapter extends BaseAdapter{
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.flipper_items, null);
         ImageView imageView = (ImageView)view.findViewById(R.id.imageView);
-        Glide.with(context).load(images.get(position)).into(imageView);
+        GlideApp.with(context).load(images.get(position)).into(imageView);
         return view;
     }
 }

@@ -40,7 +40,7 @@ public class home_tab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         daView =  inflater.inflate(R.layout.fragment_home_tab, container, false);
-        recyclerView = (RecyclerView) daView.findViewById(R.id.homeRecView);
+        recyclerView = daView.findViewById(R.id.homeRecView);
         recyclerView.setHasFixedSize(true);
         mobGridLayout = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mobGridLayout);

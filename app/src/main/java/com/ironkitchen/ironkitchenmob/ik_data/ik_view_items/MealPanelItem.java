@@ -5,6 +5,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.view.View;
 
+import com.ironkitchen.ironkitchenmob.ik_view.GlideApp;
 import com.ironkitchen.ironkitchenmob.ik_view.ik_viewholders.MealPanelViewHolder;
 import com.xwray.groupie.ExpandableGroup;
 import com.xwray.groupie.ExpandableItem;
@@ -45,7 +46,7 @@ public class MealPanelItem extends Item<MealPanelViewHolder> implements Expandab
     @Override
     public void bind(final MealPanelViewHolder viewHolder, int position) {
         viewHolder.textPanel.setText(panelTitle);
-        viewHolder.expandableIcon.setImageResource(expandableGroup.isExpanded() ? R.drawable.ic_arrow_drop_up_black_24dp : R.drawable.ic_arrow_drop_down_black_24dp);
+        GlideApp.with(viewHolder.getRoot().getContext()).load(getExpandableButtonIcon()).into(viewHolder.expandableIcon);
         viewHolder.rootPanel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

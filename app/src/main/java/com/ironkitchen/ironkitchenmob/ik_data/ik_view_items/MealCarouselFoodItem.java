@@ -8,6 +8,7 @@ import android.view.View;
 import com.bumptech.glide.Glide;
 import com.ironkitchen.ironkitchenmob.R;
 import com.ironkitchen.ironkitchenmob.ik_data.FoodItemDetails;
+import com.ironkitchen.ironkitchenmob.ik_view.GlideApp;
 import com.ironkitchen.ironkitchenmob.ik_view.ik_viewholders.MealCarouselFoodItemViewHolder;
 import com.xwray.groupie.Item;
 
@@ -69,7 +70,7 @@ public class MealCarouselFoodItem extends Item<MealCarouselFoodItemViewHolder>{
         {
             viewHolder.foodText.setTextSize(18);
         }
-        Glide.with(viewHolder.getRoot().getContext()).load(foodImage).into(viewHolder.foodImage);
+        GlideApp.with(viewHolder.getRoot().getContext()).load(foodImage).into(viewHolder.foodImage);
     }
 
 }

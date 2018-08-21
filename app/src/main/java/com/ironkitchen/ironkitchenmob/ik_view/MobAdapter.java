@@ -123,7 +123,7 @@ class MobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             {
                 CustomViewHolderButton viewHolder = (CustomViewHolderButton) holder;
                 viewHolder.setIsRecyclable(false);
-                Glide.with(context).
+                GlideApp.with(context).
                         load(mobObjects.get(position).getImageID())
                         .apply(bitmapTransform(new RoundedCornersTransformation(45, 0,
                                 RoundedCornersTransformation.CornerType.BOTTOM)))
@@ -136,14 +136,14 @@ class MobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             {
                 CustomViewHolderImage viewHolder = (CustomViewHolderImage) holder;
                 viewHolder.setIsRecyclable(false);
-                Glide.with(context).load(mobObjects.get(position).getImageID()).into(viewHolder.imageView);
+                GlideApp.with(context).load(mobObjects.get(position).getImageID()).into(viewHolder.imageView);
             }
             break;
             case image_double:
             {
                 CustomViewHolderImageVideo viewHolder = (CustomViewHolderImageVideo) holder;
                 viewHolder.setIsRecyclable(false);
-                Glide.with(context).load(mobObjects.get(position).getImageID()).into(viewHolder.imageView);
+                GlideApp.with(context).load(mobObjects.get(position).getImageID()).into(viewHolder.imageView);
                 VideoView video = viewHolder.videoView;
                 MediaController media = new MediaController(this.context);
                 String videoPath = "android.resource://com.ironkitchen.ironkitchenmob/"+R.raw.ik_intro;
