@@ -33,8 +33,8 @@ class CustomViewHolderButton extends RecyclerView.ViewHolder{
 
     public CustomViewHolderButton(View view) {
         super(view);
-        this.imageView = (ImageView) view.findViewById(R.id.imageButton);
-        this.textView1 = (TextView) view.findViewById(R.id.textType);
+        this.imageView = view.findViewById(R.id.imageButton);
+        this.textView1 = view.findViewById(R.id.textType);
     }
 }
 
@@ -43,7 +43,7 @@ class CustomViewHolderImage extends RecyclerView.ViewHolder{
 
     public CustomViewHolderImage(View view) {
         super(view);
-        this.imageView = (ImageView) view.findViewById(R.id.imageViewCard);
+        this.imageView = view.findViewById(R.id.imageViewCard);
     }
 }
 
@@ -53,9 +53,9 @@ class CustomViewHolderImageVideo extends RecyclerView.ViewHolder{
     ProgressBar progressBar;
     public CustomViewHolderImageVideo(View view) {
         super(view);
-        this.imageView = (ImageView) view.findViewById(R.id.imageViewCard);
-        this.videoView = (VideoView) view.findViewById(R.id.videoViewCard);
-        this.progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        this.imageView = view.findViewById(R.id.imageViewCard);
+        this.videoView = view.findViewById(R.id.videoViewCard);
+        this.progressBar = view.findViewById(R.id.progressBar);
     }
 }
 

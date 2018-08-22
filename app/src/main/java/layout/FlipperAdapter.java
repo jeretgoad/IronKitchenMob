@@ -44,7 +44,7 @@ public class FlipperAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.flipper_items, null);
-        ImageView imageView = (ImageView)view.findViewById(R.id.imageView);
+        ImageView imageView = view.findViewById(R.id.imageView);
         GlideApp.with(context).load(images.get(position)).into(imageView);
         return view;
     }

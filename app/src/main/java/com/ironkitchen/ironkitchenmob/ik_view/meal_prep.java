@@ -40,19 +40,7 @@ public class meal_prep extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mealView = inflater.inflate(R.layout.fragment_meal_prep, container, false);
-        mealRV  = mealView.findViewById(R.id.mealRecView);
-        ik_dsi = new FakeDataSource();
-        mealCarouselColor = ContextCompat.getColor(getContext(), R.color.colorCarouselBg);
-        mealBtwPadding = getResources().getDimensionPixelSize(R.dimen.padding_carousel);
 
-        mealGroupAdapter = new GroupAdapter();
-
-        populateAdapter();
-
-        layoutManager = new GridLayoutManager(getActivity(), mealGroupAdapter.getSpanCount());
-        layoutManager.setSpanSizeLookup(mealGroupAdapter.getSpanSizeLookup());
-        mealRV.setLayoutManager(layoutManager);
-        mealRV.setAdapter(mealGroupAdapter);
         return mealView;
     }
 
