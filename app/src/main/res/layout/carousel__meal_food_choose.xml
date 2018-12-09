@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="?android:attr/listPreferredItemHeightLarge"
@@ -14,7 +14,7 @@
 
     >
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.ConstraintLayout
         android:id="@+id/mealChoiceFoodImageConstraints"
         android:layout_width="?android:attr/listPreferredItemHeightLarge"
         android:layout_height="?android:attr/listPreferredItemHeight"
@@ -39,7 +39,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:background="@drawable/steak" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.ConstraintLayout>
 
     <TextView
         android:id="@+id/mealChoiceImageTitle"
@@ -61,4 +61,4 @@
         app:layout_constraintTop_toBottomOf="@+id/mealChoiceFoodImageConstraints"
         tools:text="Steak" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.ConstraintLayout>

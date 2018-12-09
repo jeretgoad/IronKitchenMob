@@ -5,7 +5,7 @@ import android.graphics.Paint;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.MediaController;
@@ -13,12 +13,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import com.bumptech.glide.Glide;
 import com.ironkitchen.ironkitchenmob.R;
 import com.ironkitchen.ironkitchenmob.ik_data.MobTabObjects;
 
 import java.util.ArrayList;
 
+import androidx.recyclerview.widget.RecyclerView;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;

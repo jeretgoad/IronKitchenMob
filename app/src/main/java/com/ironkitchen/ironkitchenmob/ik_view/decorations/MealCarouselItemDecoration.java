@@ -1,7 +1,7 @@
 package com.ironkitchen.ironkitchenmob.ik_view.decorations;
 
-import android.support.annotation.ColorInt;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.ColorInt;
+import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;

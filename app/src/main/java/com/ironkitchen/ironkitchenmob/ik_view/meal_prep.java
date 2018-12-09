@@ -2,17 +2,13 @@ package com.ironkitchen.ironkitchenmob.ik_view;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ironkitchen.ironkitchenmob.R;
-import com.ironkitchen.ironkitchenmob.ik_data.FakeDataSource;
 import com.ironkitchen.ironkitchenmob.ik_data.IKdataSourceInterface;
 import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealCarouselFoodItem;
 import com.ironkitchen.ironkitchenmob.ik_data.ik_view_items.MealCarouselItem;
@@ -22,6 +18,10 @@ import com.xwray.groupie.ExpandableGroup;
 import com.xwray.groupie.GroupAdapter;
 import com.xwray.groupie.Section;
 import java.util.List;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class meal_prep extends Fragment {

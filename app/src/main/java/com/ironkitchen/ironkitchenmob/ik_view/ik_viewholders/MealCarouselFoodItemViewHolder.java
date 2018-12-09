@@ -1,6 +1,6 @@
 package com.ironkitchen.ironkitchenmob.ik_view.ik_viewholders;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;

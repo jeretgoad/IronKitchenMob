@@ -1,12 +1,13 @@
 package com.ironkitchen.ironkitchenmob.ik_data.ik_view_items;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import com.ironkitchen.ironkitchenmob.R;
 import com.ironkitchen.ironkitchenmob.ik_view.ik_viewholders.MealCarouselViewHolder;
+import com.xwray.groupie.GroupAdapter;
 import com.xwray.groupie.Item;
 
 public class MealCarouselItem extends Item<MealCarouselViewHolder>{
@@ -20,7 +21,7 @@ public class MealCarouselItem extends Item<MealCarouselViewHolder>{
         this.carouselDecoration = itemDecoration;
     }
 
-    public void setAdapter(RecyclerView.Adapter adapter){
+    public void setAdapter(GroupAdapter adapter){
         this.adapter = adapter;
     }
 

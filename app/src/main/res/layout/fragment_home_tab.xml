@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
@@ -7,7 +7,7 @@
     tools:context="com.ironkitchen.ironkitchenmob.ik_view.home_tab">
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.appcompat.widget.RecyclerView
         android:id="@+id/homeRecView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -22,4 +22,4 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.ConstraintLayout>

@@ -1,8 +1,8 @@
 package com.ironkitchen.ironkitchenmob.ik_data.ik_view_items;
 
 import android.graphics.drawable.Animatable;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 
