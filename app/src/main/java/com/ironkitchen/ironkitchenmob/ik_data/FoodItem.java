@@ -13,11 +13,14 @@ public class FoodItem {
 
     private double price;
 
+    private int pounds;
+
     private String foodChoice;
 
-    public FoodItem(String title, double price, String foodChoice) {
+    public FoodItem(String title, double price, int pounds, String foodChoice) {
         this.title = title;
         this.price = price;
+        this.pounds = pounds;
         this.foodChoice = foodChoice;
     }
 
@@ -36,6 +39,8 @@ public class FoodItem {
     public double getPrice() {
         return price;
     }
+
+    public double getPounds() { return pounds; }
 
     public String getFoodChoice() {
         return foodChoice;
