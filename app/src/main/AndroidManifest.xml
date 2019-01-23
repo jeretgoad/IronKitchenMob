@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ironkitchen.ironkitchenmob">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:largeHeap="true"
-        android:theme="@style/backGroundScreen">
         android:appComponentFactory="@string/action_settings"
+        android:theme="@style/backGroundScreen"
+        tools:ignore="ExtraText,GoogleAppIndexingWarning">
         <activity android:name=".ik_view.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

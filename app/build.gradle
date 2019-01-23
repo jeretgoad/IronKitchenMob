@@ -34,15 +34,15 @@ dependencies {
     def lifecycle_version = "2.0.0"
     def room_version = "2.1.0-alpha03"    //noinspection GradleCompatible
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.android.material:material:1.1.0-alpha01'
-    implementation 'com.google.android.gms:play-services-auth:11.8.0'
-    implementation 'com.google.firebase:firebase-messaging:11.8.0'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
     implementation 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2'
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.1-beta01', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     api 'androidx.appcompat:appcompat:1.1.0-alpha01'
-    api 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    api 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
     api 'androidx.legacy:legacy-support-v4:1.0.0'
     api 'androidx.cardview:cardview:1.0.0'
     api 'androidx.recyclerview:recyclerview:1.1.0-alpha01'
@@ -51,7 +51,7 @@ dependencies {
     api 'com.michaelmuenzer.android:ScrollableNumberPicker:0.2.2'
     api 'com.loopj.android:android-async-http:1.4.9'
     api 'com.xwray:groupie:2.0.3'
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    api 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation 'jp.wasabeef:glide-transformations:3.3.0'
     // If you want to use the GPU Filters
