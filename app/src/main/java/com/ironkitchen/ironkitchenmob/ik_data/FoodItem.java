@@ -13,21 +13,20 @@ public class FoodItem {
 
     private double price;
 
-    private int pounds;
+    private String description;
 
-    private String foodChoice;
+    private String foodGroup;
 
-    public FoodItem(String title, double price, int pounds, String foodChoice) {
+    public FoodItem(String title, double price, String description, String foodGroup) {
         this.title = title;
         this.price = price;
-        this.pounds = pounds;
-        this.foodChoice = foodChoice;
+        this.foodGroup = foodGroup;
+        this.description = description;
     }
 
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -35,14 +34,21 @@ public class FoodItem {
     public String getTitle() {
         return title;
     }
+    public void setTitle(String title) {this.title = title;}
 
     public double getPrice() {
         return price;
     }
+    public void setPrice(double price) {this.price = price;}
 
-    public double getPounds() { return pounds; }
-
-    public String getFoodChoice() {
-        return foodChoice;
+    public String getdescription() {
+        return description;
     }
+    public void setdescription(String description) {this.description = description;}
+
+    public String getFoodGroup() {
+        return foodGroup;
+    }
+    public void setFoodGroup(String foodGroup) {this.foodGroup = foodGroup;}
+
 }
